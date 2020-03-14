@@ -42,21 +42,26 @@ SRCS = 	ft_memset.c \
 		ft_lstmap.c \
 		ft_tablen.c ft_tabfree.c ft_tabdup.c ft_tabpush.c ft_tabindex.c \
 		ft_tabdelete.c ft_tabdeletem.c \
+		get_next_line.c
 
+ALL_SRCS = $(addprefix srcs/,$(SRCS))
 
 HEADER = libft.h
 
 OBJS = $(SRCS:.c=.o)
 
-$(NAME):
-		gcc $(FLAGS) -c srcs/*.c -I./ $(HEADER)
+.PHONY : clean fclean re all
+.SILENT : clean fclean re all $(NAME)
+
+$(NAME): $(ALL_SRCS)
+		gcc $(FLAGS) -c $(ALL_SRCS) -I./ $(HEADER)
 		ar rc $(NAME) $(OBJS)
 		ranlib $(NAME)
 
 all: $(NAME)
 
 clean:
-		rm -f $(OBJS) $(OBJSBONUSES)
+		rm -f $(OBJS)
 
 fclean: clean
 		rm -f $(NAME)
@@ -65,4 +70,4 @@ re: fclean all
 
 
 norme:
-	norminette $(SRCS) $(BONUSES) $(HEADER)
+	norminette $(SRCS) $(HEADER)

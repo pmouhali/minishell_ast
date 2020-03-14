@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft2.h                                           :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:29:48 by pmouhali          #+#    #+#             */
-/*   Updated: 2019/11/09 16:04:50 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/03/14 14:43:22 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 # define true  1
 # define false 0
+
+# define BUFFER_SIZE 1
 
 typedef struct	s_list
 {
@@ -80,5 +82,6 @@ void			**ft_tabpush(void *tab[], const void *elem, int index, void *(*dup)(const
 int				ft_tabindex(const void *tab[], const void *e, int (*cmp)(const void *, const void *));
 void			**ft_tabdelete(void *tab[], const void *e, int (*cmp)(const void *, const void *), void *(*dup)(const void*));
 void			**ft_tabdeletem(void *tab[], const void *e, int (*cmp)(const void *, const void*));
+int				get_next_line(int fd, char **line);
 
 #endif
