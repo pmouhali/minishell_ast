@@ -6,7 +6,7 @@
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:29:48 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/03/14 14:43:22 by suzie            ###   ########.fr       */
+/*   Updated: 2020/03/14 20:30:16 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,19 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include "ft_printf/ft_fprintf.h"
+# include <limits.h>
 
 # define true  1
 # define false 0
 
-# define BUFFER_SIZE 1
+# define BUFFER_SIZE 30
+
+# define BASE_16_MIN	"0123456789abcdef"
+# define BASE_16_MAJ	"0123456789ABCDEF"
+# define BASE_10 		"0123456789"
+# define BASE_BIN		"01"
+# define BASE_8			"01234567"
 
 typedef struct	s_list
 {
@@ -83,5 +91,29 @@ int				ft_tabindex(const void *tab[], const void *e, int (*cmp)(const void *, co
 void			**ft_tabdelete(void *tab[], const void *e, int (*cmp)(const void *, const void *), void *(*dup)(const void*));
 void			**ft_tabdeletem(void *tab[], const void *e, int (*cmp)(const void *, const void*));
 int				get_next_line(int fd, char **line);
+char			*ft_strjoinplus(char *s1, char *s2, int c);
+void			*ft_memalloc(size_t size);
+void			ft_strdel(char **as);
+char			*ft_strcat(char *dest, const char *src);
+char			*ft_strcpy(char *dest, const char *src);
+void			ft_memdel(void **ap);
+char			*arrondi(char *str, size_t prec);
+char			*ft_llutoa_base(unsigned long long n, char *base);
+char			*ft_ltoa_base(long n, char *base);
+char			*ft_ftoa(long double n, size_t prec);
+char			*ft_lltoa(long long n);
+char			*ft_ultoa_base(unsigned long n, char *base);
+char			*ft_lltoa_base(long long n, char *base);
+char			*ft_llutoa(unsigned long long n);
+char			*ft_uitoa(unsigned int n);
+char			*ft_ultoa(unsigned long n);
+char			*ft_bintoa(void *obj, size_t t);
+char			*ft_uitoa_base(unsigned int n, char *base);
+size_t			ft_strlenn(const char *str, char c);
+char			*ft_strnew(size_t size);
+char			*ft_strndup(const char *src, size_t n);
+char			*ft_strncpy(char *dest, const char *src, size_t n);
+char			*ft_strrev(char *str);
+char			*ft_strncut(char *dest, int n, int d);
 
 #endif
