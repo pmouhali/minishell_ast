@@ -19,5 +19,5 @@ int		ft_index(const char *s, int c)
 	while (s[++i])
 		if (s[i] == c)
 			return (i);
-	return (i);
+	return (-1);
 }
