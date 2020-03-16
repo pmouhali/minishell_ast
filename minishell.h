@@ -12,5 +12,7 @@
 
 char **environment;
 
-int change_dir(char **arg);
+int             change_dir(char **arg);
+char    		*get_key_value(char **tab, char *key);
+int  			keycmp(char *str, char *key);
 #endif

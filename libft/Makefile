@@ -44,8 +44,7 @@ SRCS =  ft_bzero.c \
 		ft_lstmap.c \
 		ft_tablen.c ft_tabfree.c ft_tabdup.c ft_tabpush.c ft_tabindex.c \
 		ft_tabdelete.c ft_tabdeletem.c \
-		get_next_line.c \
-		get_key_value.c
+		get_next_line.c
 
 FPRINTF =	create_seg.c \
 			find_format.c \

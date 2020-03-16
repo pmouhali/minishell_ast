@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_key_value.c                                    :+:      :+:    :+:   */
+/*   env_tool.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 16:01:21 by suzie             #+#    #+#             */
-/*   Updated: 2020/03/16 18:40:11 by suzie            ###   ########.fr       */
+/*   Updated: 2020/03/16 19:38:09 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 #include "libft.h"
 
-static int  keycmp(char *str, char *key)
+int  keycmp(char *str, char *key)
 {
     unsigned int i;
 
@@ -41,5 +41,7 @@ char    *get_key_value(char **tab, char *key)
 	int i;
 
     i = ft_tabindex((const void**)tab, (const void*)key, (void*)&keycmp);
+	if (i != -1)
+		return (NULL);
 	return ((tab[i]) + ft_strlen(key) + 1);
 }
