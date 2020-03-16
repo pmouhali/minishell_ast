@@ -44,11 +44,12 @@ SRCS =  ft_bzero.c \
 		ft_lstmap.c \
 		ft_tablen.c ft_tabfree.c ft_tabdup.c ft_tabpush.c ft_tabindex.c \
 		ft_tabdelete.c ft_tabdeletem.c \
-		get_next_line.c
+		get_next_line.c \
+		get_key_value.c
 
 FPRINTF =	create_seg.c \
 			find_format.c \
-			ft_fprintf.c \
+			ft_dprintf.c \
 			ft_manageflag.c \
 			ft_print_base.c \
 			ft_print_csp.c \
@@ -56,7 +57,7 @@ FPRINTF =	create_seg.c \
 
 ALL_SRCS = $(addprefix srcs/,$(SRCS)) $(addprefix ft_printf/,$(FPRINTF)) $(addprefix mem/,$(MEM)) $(addprefix str/,$(STR)) $(addprefix conv/,$(CONV))
 
-HEADER = libft.h ft_printf/ft_fprintf.h
+HEADER = libft.h ft_printf/ft_dprintf.h
 
 OBJS = $(SRCS:.c=.o) $(FPRINTF:.c=.o) $(MEM:.c=.o) $(STR:.c=.o) $(CONV:.c=.o)
 

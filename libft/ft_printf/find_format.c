@@ -6,11 +6,11 @@
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:22:18 by grochefo          #+#    #+#             */
-/*   Updated: 2020/03/15 12:23:46 by suzie            ###   ########.fr       */
+/*   Updated: 2020/03/16 16:52:27 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_fprintf.h"
+#include "ft_dprintf.h"
 
 static int		find_color(const char *format, t_format *form)
 {

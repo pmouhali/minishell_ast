@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fprintf.h                                       :+:      :+:    :+:   */
+/*   ft_dprintf.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 14:12:59 by grochefo          #+#    #+#             */
-/*   Updated: 2020/03/14 20:08:14 by suzie            ###   ########.fr       */
+/*   Updated: 2020/03/16 16:56:09 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FT_DPRINTF_H
+# define FT_DPRINTF_H
 
 # include "../libft.h"
 # include <stdarg.h>
@@ -50,7 +50,7 @@ typedef struct		s_format
 }					t_format;
 
 int					find_format(const char *format, t_format *form, va_list ap);
-int					ft_fprintf(int fd, const char *format, ...);
+int					ft_dprintf(int fd, const char *format, ...);
 void				create_seg(t_format *form, va_list ap);
 char				*ft_print_xmaj(char *buff, va_list ap, t_format *form);
 char				*ft_print_x(char *buff, va_list ap, t_format *form);
