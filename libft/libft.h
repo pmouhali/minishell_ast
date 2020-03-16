@@ -6,7 +6,7 @@
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:29:48 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/03/16 16:53:50 by suzie            ###   ########.fr       */
+/*   Updated: 2020/03/16 17:35:51 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,6 @@ char			*ft_strndup(const char *src, size_t n);
 char			*ft_strncpy(char *dest, const char *src, size_t n);
 char			*ft_strrev(char *str);
 char			*ft_strncut(char *dest, int n, int d);
-char    		*get_key_value(char *key, char **tab);
+char    		*get_key_value(char **tab, char *key);
 
 #endif

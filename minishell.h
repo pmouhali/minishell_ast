@@ -10,4 +10,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+char **environment;
+
+int change_dir(char **arg);
 #endif
