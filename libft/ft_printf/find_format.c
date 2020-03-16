@@ -6,7 +6,7 @@
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:22:18 by grochefo          #+#    #+#             */
-/*   Updated: 2020/03/14 15:48:58 by suzie            ###   ########.fr       */
+/*   Updated: 2020/03/15 12:23:46 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ static int		find_color(const char *format, t_format *form)
 	int	i;
 
 	i = 0;
-	!(ft_strncmp(format, "{black}", 7)) ? form->color = 'B' : 0;
-	!(ft_strncmp(format, "{red}", 5)) ? form->color = 'R' : 0;
-	!(ft_strncmp(format, "{green}", 7)) ? form->color = 'G' : 0;
-	!(ft_strncmp(format, "{yellow}", 8)) ? form->color = 'Y' : 0;
-	!(ft_strncmp(format, "{blue}", 6)) ? form->color = 'b' : 0;
-	!(ft_strncmp(format, "{pink}", 6)) ? form->color = 'P' : 0;
-	!(ft_strncmp(format, "{cyan}", 6)) ? form->color = 'C' : 0;
-	!(ft_strncmp(format, "{grey}", 6)) ? form->color = 'g' : 0;
-	!(ft_strncmp(format, "{eoc}", 5)) ? form->color = 'E' : 0;
+	ft_strncmp(format, "{black}", 7) ? form->color = 'B' : 0;
+	ft_strncmp(format, "{red}", 5) ? form->color = 'R' : 0;
+	ft_strncmp(format, "{green}", 7) ? form->color = 'G' : 0;
+	ft_strncmp(format, "{yellow}", 8) ? form->color = 'Y' : 0;
+	ft_strncmp(format, "{blue}", 6) ? form->color = 'b' : 0;
+	ft_strncmp(format, "{pink}", 6) ? form->color = 'P' : 0;
+	ft_strncmp(format, "{cyan}", 6) ? form->color = 'C' : 0;
+	ft_strncmp(format, "{grey}", 6) ? form->color = 'g' : 0;
+	ft_strncmp(format, "{eoc}", 5) ? form->color = 'E' : 0;
 	if (form->color)
 	{
 		while (format[i] != '}')

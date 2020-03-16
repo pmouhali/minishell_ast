@@ -6,11 +6,12 @@
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 16:27:02 by grochefo          #+#    #+#             */
-/*   Updated: 2020/03/14 20:04:28 by suzie            ###   ########.fr       */
+/*   Updated: 2020/03/15 12:21:59 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fprintf.h"
+#include <stdio.h>
 
 static void	verifyform(t_format *form)
 {
