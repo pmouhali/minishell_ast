@@ -5,6 +5,7 @@
 /*
 **	[NAME] :
 **	ft_tabpush
+**
 **	[DESCRIPTION] :
 **	creates a copy of the given two-dimensional array with the element to push
 **	added at the specified position.
@@ -14,6 +15,7 @@
 **	element will be pushed in last position.
 **	this function frees the given two-dimensional array, so it needs to be
 **	previously allocated.
+**
 **	[RETURN VALUE] :
 **	returns the new two-dimensional array, or, NULL if one parameter is null or
 **	if allocation fail.

@@ -3,8 +3,15 @@
 #include "libft.h"
 
 /*
-**	returns an allocated copy of the two-dimensional array given in argument
+**  [NAME] :
+**	ft_tabdup
+**
+**	[DESCRIPTION] :
+**	creates a copy of the given two-dimensional array 'tab'
 **	for the duplication to work it needs to be given a duplication function
+**
+**	[RETURN VALUE] :
+**	returns the allocated copy
 */
 
 void	**ft_tabdup(const void *tab[], void *(*dup)(const void *))

@@ -3,7 +3,14 @@
 #include "libft.h"
 
 /*
-** frees a previously allocated and null-terminated two-dimensional array
+**	[NAME] :
+**	ft_tabfree
+**
+**	[DESCRIPTION] :
+** 	frees a previously allocated and null-terminated two-dimensional array
+**
+**	[RETURN VALUE] :
+**	none
 */
 
 void	ft_tabfree(void **tab)
@@ -11,7 +18,7 @@ void	ft_tabfree(void **tab)
 	int i;
 
 	i = -1;
-	while (tab[++i])
+	while (tab && tab[++i])
 	{
 		free(tab[i]);
 		tab[i] = NULL;

@@ -3,11 +3,13 @@
 /*
 **	[NAME] :
 **	ft_tabdeletem - m stands for memmmove
+**
 **	[DESCRIPTION] :
 **	frees the element 'e' in the given two-dimensional array and move back
 **	all the following pointers so the data remains valid.
 **	no reallocation is performed so the previously taken memory remains unused.
 **	if 'e' is not found in 'tab', nothing is done.
+**
 **	[RETURN VALUE] :
 **	constanlty returns the given two-dimensional array.
 */

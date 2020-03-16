@@ -3,11 +3,13 @@
 /*
 **	[NAME] :
 **	ft_tabdelete
+**
 **	[DESCRIPTION] :
 **	creates a copy of the given two-dimensional array ignoring the element 'e'.
 **	the provided comparison function is used to find 'e' in the array, it will
 **	be passed as the argument to ft_tabindex.
 **	only the first occurence of 'e' will be ignored.
+**
 **	[RETURN VALUE] :
 **	returns the new two-dimensional array, or, 'tab' if 'e' is not found or if
 **	allocation fails, or if one of the parameter is null.

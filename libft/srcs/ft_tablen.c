@@ -3,15 +3,23 @@
 #include "libft.h"
 
 /*
-**	return the lenght of the given two-dimensional array
-**	do not count the null terminating pointer
-**	segfaults if the given tab is null, maybe change that ?
+**	[NAME] :
+**	ft_tablen
+**
+**	[DESCRIPTION] :
+**	get the lenght of the given two-dimensional array, not including the
+**	null-terminating pointer
+**
+**	[RETURN VALUE] :
+**	return the lenght of the array or -1 if the array is null
 */
 
-int		ft_tablen(const void **tab)
+int		ft_tablen(const void *tab[])
 {
 	int i;
 
+	if (tab == NULL)
+		return (-1);
 	i = 0;
 	while (tab[i])
 		i++;

@@ -33,7 +33,7 @@ SRCS =  ft_bzero.c \
 		ft_tolower.c \
 		ft_calloc.c \
 		ft_split.c \
-		ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
+		ft_putstr.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 		ft_lstnew.c \
 		ft_lstadd_front.c ft_lstadd_back.c \
 		ft_lstsize.c \
@@ -43,7 +43,7 @@ SRCS =  ft_bzero.c \
 		ft_lstiter.c \
 		ft_lstmap.c \
 		ft_tablen.c ft_tabfree.c ft_tabdup.c ft_tabpush.c ft_tabindex.c \
-		ft_tabdelete.c ft_tabdeletem.c \
+		ft_tabdelete.c ft_tabdeletem.c ft_tabprint.c ft_tabsort.c \
 		get_next_line.c
 
 FPRINTF =	create_seg.c \
