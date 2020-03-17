@@ -1,4 +1,63 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_tool.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/16 16:01:21 by suzie             #+#    #+#             */
+/*   Updated: 2020/03/16 19:38:09 by suzie            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
+#include "libft.h"
+
+/*
+**	[NAME] : get_key_value
+**  [DESCRIPTION] :
+**	use the 'keycmp' function to find the value of a key in a
+**	two-dimensional array formatted as follow :
+**
+**	{"KEY=VALUE", "VAR=CONTENT", ..., NULL}
+**
+**	[RETURN VALUE] :
+**	returns the value of the key, as a pointer to the start of the content in the
+**	corresponding string, if it was found or NULL;
+**
+*/
+
+char    *get_key_value(char **tab, char *key)
+{
+	int i;
+
+    i = ft_tabindex((const void**)tab, (const void*)key, (void*)&keycmp);
+	if (i != -1)
+		return (NULL);
+	return ((tab[i]) + ft_strlen(key) + 1);
+}
+
+/*
+**	[NAME] : keycmp 
+**	[DESCRIPTION] :
+**	check if the given string match the given key
+**	the string must be like "KEY=VALUE"
+**
+**	[RETURN VALUES]
+**	returns 0 if this is a match, -1 if not
+*/
+
+int  keycmp(char *str, char *key)
+{
+    unsigned int i;
+
+	i = 0;
+	while (str[i] == key[i] && key[i] != '\0' && str[i] != '\0')
+		i++;
+	if (str[i] == '=')
+		return (0);
+	return (-1);
+}
 
 /*
 **	[NAME] : valid_envar_name

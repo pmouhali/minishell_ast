@@ -3,7 +3,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include "libft.h"
+#include "libft/libft.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -22,5 +22,11 @@ int		export(char *args[]);
 
 // ERROR MANAGEMENT
 void    ft_perrorc(const char *from, const char *arg, const char *msg);
+
+char **environment;
+
+int             change_dir(char **arg);
+char    		*get_key_value(char **tab, char *key);
+int  			keycmp(char *str, char *key);
 
 #endif

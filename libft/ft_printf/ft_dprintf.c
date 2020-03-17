@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fprintf.c                                       :+:      :+:    :+:   */
+/*   ft_dprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 16:27:02 by grochefo          #+#    #+#             */
-/*   Updated: 2020/03/14 20:04:28 by suzie            ###   ########.fr       */
+/*   Updated: 2020/03/16 16:53:16 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_fprintf.h"
+#include "ft_dprintf.h"
+#include <stdio.h>
 
 static void	verifyform(t_format *form)
 {
@@ -26,7 +27,7 @@ static void	verifyform(t_format *form)
 	|| form->type == 'U') && !(form->flag & L) ? form->flag += L : 0;
 }
 
-int			ft_fprintf(int fd, const char *format, ...)
+int			ft_dprintf(int fd, const char *format, ...)
 {
 	t_format	form;
 	va_list		ap;

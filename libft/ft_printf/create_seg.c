@@ -6,11 +6,11 @@
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 20:21:30 by grochefo          #+#    #+#             */
-/*   Updated: 2020/03/14 16:33:22 by suzie            ###   ########.fr       */
+/*   Updated: 2020/03/16 16:56:44 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_fprintf.h"
+#include "ft_dprintf.h"
 
 static char		*formcolor(t_format *form, char *buff)
 {
