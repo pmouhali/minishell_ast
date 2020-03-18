@@ -6,7 +6,7 @@
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 16:01:21 by suzie             #+#    #+#             */
-/*   Updated: 2020/03/18 12:19:45 by suzie            ###   ########.fr       */
+/*   Updated: 2020/03/18 12:25:15 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char    *get_key_value(char **tab, char *key)
     i = ft_tabindex((const void**)tab, (const void*)key, (void*)&keycmp);
 	if (i == -1)
 		return (NULL);
-	ret = (tab[i]) + ft_strlen(key);
+	ret = (tab[i]) + ft_strlenn(key, '=');
 	if (ret[0] == '=')
 		return (ret + 1);
 	else
