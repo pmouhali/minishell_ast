@@ -6,12 +6,11 @@
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/15 11:44:50 by suzie             #+#    #+#             */
-/*   Updated: 2020/03/18 12:28:58 by suzie            ###   ########.fr       */
+/*   Updated: 2020/03/18 12:50:02 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#include <stdio.h>
 
 int change_dir(char **arg)
 {
