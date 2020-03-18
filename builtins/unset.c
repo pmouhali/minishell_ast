@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/18 12:50:09 by suzie             #+#    #+#             */
-/*   Updated: 2020/03/18 14:43:50 by suzie            ###   ########.fr       */
+/*   Created: 2020/03/18 14:40:36 by suzie             #+#    #+#             */
+/*   Updated: 2020/03/18 15:23:03 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int ft_pwd(char *args[])
+int unset(char *[])
 {
-    char    path[PATH_MAX];
-
-    (void)arg;
-    if (!(getcwd(path, PATH_MAX)))
-        return (1);
-    else
-        ft_dprintf(1, "%s\n", path);
-    return (0);
+    if (argv[1])
+    {
+        
+        ft_tabindex((const void**)tab, (const void*)key, (void*)&keycmp) == -1);
+    }
+    return(1);
 }
