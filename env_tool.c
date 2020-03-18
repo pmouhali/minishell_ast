@@ -6,7 +6,7 @@
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 16:01:21 by suzie             #+#    #+#             */
-/*   Updated: 2020/03/18 11:36:14 by suzie            ###   ########.fr       */
+/*   Updated: 2020/03/18 11:41:59 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int  keycmp(char *str, char *key)
 	i = 0;
 	while (str[i] == key[i] && key[i] != '\0' && key[i] != '=' && str[i] != '\0')
 		i++;
-	if (str[i] == '=')
+	if (str[i] == '=' || !str[i])
 		return (0);
 	return (1);
 }
