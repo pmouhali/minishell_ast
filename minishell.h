@@ -3,6 +3,9 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+// TODO: rm stdio inc when project is complete
+#include <stdio.h>
+
 #include "libft/libft.h"
 #include <unistd.h>
 #include <stdlib.h>
@@ -16,6 +19,10 @@ char **environment;
 
 // ENV UTILS
 int     valid_envar_name(const char *n);
+char    		*get_key_value(char **tab, char *key);
+int  			keycmp(char *str, char *key);
+int     push_envar(const char *str);
+
 
 // BUILTINS
 int		export(char *args[]);
@@ -26,7 +33,5 @@ void    ft_perrorc(const char *from, const char *arg, const char *msg);
 char **environment;
 
 int             change_dir(char **arg);
-char    		*get_key_value(char **tab, char *key);
-int  			keycmp(char *str, char *key);
 
 #endif

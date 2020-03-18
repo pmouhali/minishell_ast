@@ -32,7 +32,7 @@ char    *get_key_value(char **tab, char *key)
 	int i;
 
     i = ft_tabindex((const void**)tab, (const void*)key, (void*)&keycmp);
-	if (i != -1)
+	if (i == -1)
 		return (NULL);
 	return ((tab[i]) + ft_strlen(key) + 1);
 }
