@@ -34,7 +34,7 @@ char    *get_key_value(char **tab, char *key)
     i = ft_tabindex((const void**)tab, (const void*)key, (void*)&keycmp);
 	if (i == -1)
 		return (NULL);
-	ret = (tab[i]) + ft_strlen(key);
+	ret = (tab[i]) + ft_strlenn(key, '=');
 	if (ret[0] == '=')
 		return (ret + 1);
 	else
@@ -106,18 +106,21 @@ int		valid_envar_name(const char *n)
 
 int		push_envar(const char *str)
 {
-	int i;
 	int old_var_i;
 
-	if (str == NULL)
+	if (str == NULL || str[0] == 0)
 		return (0);
-	// isole key TEST=content TEST= TEST
-	i = ft_index(str, '=');
-
-	// check is exists
-	//old_var_i = ft_tabindex(environment, key, (void*)keycmp);
-	// delete + push
-	//		or
-	// push
-	// return
+	old_var_i = ft_tabindex((const void**)environment, str, (void*)keycmp);
+	if (old_var_i != -1 && ft_index(str, '=') == -1)
+		return (0);
+	if (old_var_i != -1 && ft_strcmp(environment[old_var_i], str) == 0)
+		return (0);
+	if (old_var_i != -1)
+		ft_tabdeletem((void**)environment, str, (void*)keycmp);
+	environment = (char**)ft_tabpush(
+		(void**)environment, str, -1, (void*)&ft_strdup
+	);
+	if (environment == NULL)
+		return (1);
+	return (0);
 }
