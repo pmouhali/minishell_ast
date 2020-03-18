@@ -6,12 +6,11 @@
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 16:01:21 by suzie             #+#    #+#             */
-/*   Updated: 2020/03/18 11:41:59 by suzie            ###   ########.fr       */
+/*   Updated: 2020/03/18 12:19:45 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "libft.h"
 
 /*
 **	[NAME] : get_key_value
@@ -30,11 +29,16 @@
 char    *get_key_value(char **tab, char *key)
 {
 	int i;
-
+	char *ret;
+	
     i = ft_tabindex((const void**)tab, (const void*)key, (void*)&keycmp);
-	if (i != -1)
+	if (i == -1)
 		return (NULL);
-	return ((tab[i]) + ft_strlen(key) + 1);
+	ret = (tab[i]) + ft_strlen(key);
+	if (ret[0] == '=')
+		return (ret + 1);
+	else
+		return (ret);
 }
 
 /*
