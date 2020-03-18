@@ -18,7 +18,7 @@
 char **environment;
 
 // ENV UTILS
-int     valid_envar_name(const char *n);
+int     valid_envar_id(const char *n);
 char    		*get_key_value(char **tab, char *key);
 int  			keycmp(char *str, char *key);
 int     push_envar(const char *str);

@@ -29,21 +29,24 @@ int	main(int ac, char **av, char **envp)
 	printf("expected 'content' got '%s'\n", get_key_value(environment, "VAR=nottherightcontent"));
 	printf("expected '=======' got '%s'\n", get_key_value(environment, "RAV"));
 	printf("expected null got '%s'\n", get_key_value(environment, "NONE"));
-
-	printf("tests for valid_envar_name:\n");
-	printf("expected 1 got %d\n", valid_envar_name("VAR"));
-	printf("expected 1 got %d\n", valid_envar_name("var"));
-	printf("expected 1 got %d\n", valid_envar_name("VAr"));
-	printf("expected 0 got %d\n", valid_envar_name("VAR="));
-	printf("expected 0 got %d\n", valid_envar_name("VAR,"));
-	printf("expected 0 got %d\n", valid_envar_name("_,"));
-	printf("expected 0 got %d\n", valid_envar_name(",_"));
-	printf("expected 0 got %d\n", valid_envar_name("255_VAR"));
-	printf("expected 1 got %d\n", valid_envar_name("_255_VAR"));
-	printf("expected 1 got %d\n", valid_envar_name("V255"));
-	printf("expected 0 got %d\n", valid_envar_name("\"VAR\'"));
 	*/
 
+	printf("tests for valid_envar_id:\n");
+	printf("expected 1 got %d\n", valid_envar_id("VAR"));
+	printf("expected 1 got %d\n", valid_envar_id("var"));
+	printf("expected 1 got %d\n", valid_envar_id("VAr=hello mars"));
+	printf("expected 1 got %d\n", valid_envar_id("VAR="));
+	printf("expected 0 got %d\n", valid_envar_id("="));
+	printf("expected 0 got %d\n", valid_envar_id("=hello sun"));
+	printf("expected 0 got %d\n", valid_envar_id("VAR,"));
+	printf("expected 0 got %d\n", valid_envar_id("_,=hello jupiter"));
+	printf("expected 0 got %d\n", valid_envar_id(",_"));
+	printf("expected 0 got %d\n", valid_envar_id("255_VAR"));
+	printf("expected 1 got %d\n", valid_envar_id("_255_VAR=hello earth"));
+	printf("expected 1 got %d\n", valid_envar_id("V255"));
+	printf("expected 0 got %d\n", valid_envar_id("\"VAR\'=hello saturn"));
+	
+	/*
 	printf("tests for push_envar:\n");
 	int r, i, d;
 	char *ok = "success";
@@ -65,7 +68,6 @@ int	main(int ac, char **av, char **envp)
 	printf("    push identical variable and content %s, expected 0 got %d\n",
 		i == -1 && d != -1 ? ko : ok, r
 	);
-
 
 	r = push_envar("EMPTY_VARIABLE");
 	i = ft_tabindex((const void**)environment, "EMPTY_VARIABLE", (void*)strcmp);
@@ -95,6 +97,7 @@ int	main(int ac, char **av, char **envp)
 	printf("        do not crash with null argument %s, expected 0 got %d\n",
 		r != 0 ? ko : ok, r
 	);
+	*/
 
 	ft_tabfree((void**)environment);
 
