@@ -44,7 +44,7 @@ char    *get_key_value(char **tab, char *key)
 **	the string must be like "KEY=VALUE"
 **
 **	[RETURN VALUES]
-**	returns 0 if this is a match, -1 if not
+**	returns 0 if this is a match, 1 if not
 */
 
 int  keycmp(char *str, char *key)
@@ -52,11 +52,11 @@ int  keycmp(char *str, char *key)
     unsigned int i;
 
 	i = 0;
-	while (str[i] == key[i] && key[i] != '\0' && key[i] == '=' && str[i] != '\0')
+	while (str[i] == key[i] && key[i] != '\0' && key[i] != '=' && str[i] != '\0')
 		i++;
 	if (str[i] == '=')
 		return (0);
-	return (-1);
+	return (1);
 }
 
 /*
