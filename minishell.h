@@ -26,12 +26,13 @@ int     push_envar(const char *str);
 
 // BUILTINS
 int		export(char *args[]);
+int		echo(char *args[]);
+int             change_dir(char **arg);
 
 // ERROR MANAGEMENT
 void    ft_perrorc(const char *from, const char *arg, const char *msg);
 
 char **environment;
 
-int             change_dir(char **arg);
 
 #endif
