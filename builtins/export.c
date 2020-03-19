@@ -46,7 +46,7 @@ static int	display_mode(void)
 	return (0);
 }
 
-int		export(char *args[])
+int		ft_export(char *args[])
 {
 	int i;
 	int errors;

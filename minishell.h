@@ -25,8 +25,9 @@ int     push_envar(const char *str);
 
 
 // BUILTINS
-int		export(char *args[]);
+int		ft_export(char *args[]);
 int		echo(char *args[]);
+int		env(char *args[]);
 int             change_dir(char **arg);
 
 // ERROR MANAGEMENT

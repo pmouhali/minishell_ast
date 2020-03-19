@@ -10,9 +10,9 @@ int	main(void)
 	environment = (char**)ft_tabdup((const void**)envp, (void*)&ft_strdup);
 
 	char *without_error[] = {
-		"export", "UNINITIALIZED", "EMPTY=", "USER=emperor Zorg-7", NULL
+		"ft_export", "UNINITIALIZED", "EMPTY=", "USER=emperor Zorg-7", NULL
 	};
-	r = export(without_error);
+	r = ft_export(without_error);
 	i = ft_tabindex((const void **)environment, without_error[1], (void*)&ft_strcmp);
 	ft_dprintf(1, i == -1 ? "%s failed to be pushed\n" : "%s successfully pushed\n",
 		without_error[1]
@@ -28,9 +28,9 @@ int	main(void)
 	ft_dprintf(1, "shouldn't throw any error, expect 0 got %d\n\n", r);
 
 	char *with_error[] = {
-		"export", "OLDPWD=/Projects/invade_saturn", "x,y=658,-89563", "80085=xxxxx", NULL
+		"ft_export", "OLDPWD=/Projects/invade_saturn", "x,y=658,-89563", "80085=xxxxx", NULL
 	};
-	r = export(with_error);
+	r = ft_export(with_error);
 	i = ft_tabindex((const void **)environment, with_error[1], (void*)&ft_strcmp);
 	ft_dprintf(1, i == -1 ? "%s failed to be pushed\n" : "%s successfully pushed\n",
 		with_error[1]
@@ -46,9 +46,9 @@ int	main(void)
 	ft_dprintf(1, "should throw 2 errors, expect 1 got %d\n\n", r);
 
 	char *only_one_arg[] = {
-		"export", "EMPTY", NULL
+		"ft_export", "EMPTY", NULL
 	};
-	r = export(only_one_arg);
+	r = ft_export(only_one_arg);
 	i = ft_tabindex((const void **)environment, only_one_arg[1], (void*)&ft_strcmp);
 	ft_dprintf(1, i != -1 ? "%s shouldn't have been pushed\n" : "%s successfully not pushed\n",
 		only_one_arg[1]
