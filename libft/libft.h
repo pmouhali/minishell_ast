@@ -6,7 +6,7 @@
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 15:29:48 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/03/18 11:50:57 by suzie            ###   ########.fr       */
+/*   Updated: 2020/03/19 15:06:59 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <string.h>
 # include "ft_printf/ft_dprintf.h"
 # include <linux/limits.h>
+# include <limits.h>
 
 # define true  1
 # define false 0

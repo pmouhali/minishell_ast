@@ -22,7 +22,7 @@
 **
 **	[RETURN VALUE] :
 **	returns the value of the key, as a pointer to the start of the content in the
-**	corresponding string, if it was found or NULL;
+**	corresponding string, if it was found, or NULL;
 **
 */
 
@@ -45,10 +45,10 @@ char    *get_key_value(char **tab, char *key)
 **	[NAME] : keycmp 
 **	[DESCRIPTION] :
 **	check if the given string match the given key
-**	the string must be like "KEY=VALUE"
+**	the string must be like "KEY=VALUE", this string match the key "KEY"
 **
 **	[RETURN VALUES]
-**	returns 0 if this is a match, -1 if not
+**	returns 0 if this is a match, 1 if not
 */
 
 int  keycmp(char *str, char *key)
@@ -60,7 +60,7 @@ int  keycmp(char *str, char *key)
 		i++;
 	if (str[i] == '=' || !str[i])
 		return (0);
-	return (-1);
+	return (1);
 }
 
 /*
@@ -91,13 +91,36 @@ int		valid_envar_name(const char *n)
 **	[NAME] : push_envar
 **	[DESCRIPTION] :
 **
-**	push the given envar in the environment array
-**	the var must be passed as a string like "key=value"
+**	push the given environment variable in the environment array
+**	the variable must be passed as a string like "key=value"
+**
 **	if a variable already exists with the same key, it will be deleted
+**	and replaced with the new key-content
+**
+**	if a variable exists with the same key, but the received variable have no
+**	content, the received variable isn't push, no modifications are performed
 **
 **	[RETURN VALUES]
-**	0 on succes, the error code in case of failure
+**	0 on succes, 1 on failure
 */
 
+int		push_envar(const char *str)
+{
+	int old_var_i;
 
-// TODO: the code
+	if (str == NULL || str[0] == 0)
+		return (0);
+	old_var_i = ft_tabindex((const void**)environment, str, (void*)keycmp);
+	if (old_var_i != -1 && ft_index(str, '=') == -1)
+		return (0);
+	if (old_var_i != -1 && ft_strcmp(environment[old_var_i], str) == 0)
+		return (0);
+	if (old_var_i != -1)
+		ft_tabdeletem((void**)environment, str, (void*)keycmp);
+	environment = (char**)ft_tabpush(
+		(void**)environment, str, -1, (void*)&ft_strdup
+	);
+	if (environment == NULL)
+		return (1);
+	return (0);
+}
