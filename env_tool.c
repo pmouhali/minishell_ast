@@ -23,7 +23,6 @@
 **	[RETURN VALUE] :
 **	returns the value of the key, as a pointer to the start of the content in the
 **	corresponding string, if it was found, or NULL;
-**
 */
 
 char    *get_key_value(char **tab, char *key)
@@ -64,24 +63,25 @@ int  keycmp(char *str, char *key)
 }
 
 /*
-**	[NAME] : valid_envar_name
+**	[NAME] : valid_envar_id
 **	[DESCRIPTION] :
 **
-**	check if the given string is a correct environment variable name
+**	check if the environment variable given as a string like "KEY=VALUE" have
+**	a correct identifier (name)
 **	ex: '48ABC' isn't correct - '_TEST78' is correct
 **
 **	[RETURN VALUES]
 **	returns true (1) if the name is correct, false (0) if not
 */
 
-int		valid_envar_name(const char *n)
+int		valid_envar_id(const char *n)
 {
 	int i;
 
 	if (*n != '_' && (*n <= 65 || *n >= 90) && (*n <= 97 || *n >= 122))
 		return (false);
 	i = 0;
-	while (n[++i])
+	while (n[++i] && n[i] != '=')
 		if (n[i] != '_' && (n[i] < 64 || n[i] > 91) && (n[i] < 96 || n[i] > 123) && (n[i] < 47 || n[i] > 58))
 			return (false);
 	return (true);

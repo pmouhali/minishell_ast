@@ -20,20 +20,22 @@
 char **environment;
 
 // ENV UTILS
-int     valid_envar_name(const char *n);
+int     valid_envar_id(const char *n);
 char    		*get_key_value(char **tab, char *key);
 int  			keycmp(char *str, char *key);
 int     push_envar(const char *str);
 
 
 // BUILTINS
-int		export(char *args[]);
+int		ft_export(char *args[]);
+int		echo(char *args[]);
+int		env(char *args[]);
+int             change_dir(char **arg);
 
 // ERROR MANAGEMENT
 void    ft_perrorc(const char *from, const char *arg, const char *msg);
 
 char **environment;
 
-int             change_dir(char **arg);
 
 #endif
