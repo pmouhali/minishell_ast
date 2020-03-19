@@ -35,7 +35,7 @@ static int	display_mode(void)
 	while (t[++i])
 	{
 		e = ft_index(t[i], '=');
-		ft_fprintf(1, "declare -x %.*s%.*s%s%.*s\n",
+		ft_dprintf(1, "declare -x %.*s%.*s%s%.*s\n",
 			e + 1, t[i],
 			e + 1, "\"",
 			&t[i][e + 1],
@@ -51,13 +51,25 @@ int		export(char *args[])
 	int i;
 	int errors;
 
-	// if no args : display mode
 	if (args[1] == NULL)
 		return (display_mode());
-	// if args : export mode
 	i = 0;
 	errors = 0;
 	while (args[++i])
-		errors += push_envar();
+	{
+		if (valid_envar_id(args[i]))
+		{
+			if (push_envar(args[i]) == 1)
+			{
+				ft_perrorc("minishell: environment erased :(", NULL, NULL);
+				return (1);
+			}
+		}
+		else
+		{
+			ft_perrorc("minishell: export", args[i], "invalid identifier");
+			errors++;
+		}
+	}
 	return (errors > 0);
 }

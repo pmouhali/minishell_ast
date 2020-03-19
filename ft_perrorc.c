@@ -22,14 +22,14 @@ void	ft_perrorc(const char *from, const char *arg, const char *msg)
 	if (from)
 	{
 		ft_putstr(from);	
-		ft_putstr(":");
+		ft_putstr(": ");
 	}
 	if (arg)
 	{
 		ft_putstr(arg);	
-		ft_putstr(":");
+		ft_putstr(": ");
 	}
 	if (msg)
-		ft_putstr(from);	
+		ft_putstr(msg);	
 	ft_putstr("\n");
 }
