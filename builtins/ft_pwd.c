@@ -6,13 +6,13 @@
 /*   By: suzie <suzie@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 12:50:09 by suzie             #+#    #+#             */
-/*   Updated: 2020/03/18 14:43:50 by suzie            ###   ########.fr       */
+/*   Updated: 2020/03/19 15:55:33 by suzie            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int ft_pwd(char *args[])
+int ft_pwd(char *arg[])
 {
     char    path[PATH_MAX];
 
