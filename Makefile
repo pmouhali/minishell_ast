@@ -14,7 +14,7 @@ MINISHFCT = env_tool.c ft_perrorc.c
 
 ALL_SRCS = $(MINISHFCT) $(addprefix builtins/,$(BUILTINS))
 
-OBJS = $(BUILTINS:.c=.o)
+OBJS = $(BUILTINS:.c=.o) $(MINISHFCT:.c=.o)
 
 .PHONY: libft all
 .SILENT: libft clean fclean re minishlib $(NAME)
