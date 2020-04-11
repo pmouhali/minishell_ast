@@ -11,7 +11,8 @@
 **	if 'e' is not found in 'tab', nothing is done.
 **
 **	[RETURN VALUE] :
-**	constanlty returns the given two-dimensional array.
+**	if e is not found then the function will return NULL.
+**	else the function return is tab.
 */
 
 #include "libft.h"
@@ -24,7 +25,7 @@ void	**ft_tabdeletem(void *tab[], const void *e, int (*cmp)(const void *, const 
 	while (tab[i] && cmp(tab[i], e))
 		i++;
 	if (tab[i] == NULL)
-		return (tab);
+		return (NULL);
 	free(tab[i]);
 	while (tab[i + 1])
 	{

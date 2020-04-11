@@ -8,7 +8,7 @@ $(NAME) : libft minishlib
 	gcc $(FLAGS) $(LIBS) -o $(NAME)
 
 BUILTINS =	change_dir.c echo.c env.c \
-			export.c ft_pwd.c
+			export.c ft_pwd.c unset.c
 
 MINISHFCT = env_tool.c ft_perrorc.c
 
