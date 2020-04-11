@@ -36,6 +36,9 @@ int     ft_unset(char *arg[]);
 // ERROR MANAGEMENT
 void    ft_perrorc(const char *from, const char *arg, const char *msg);
 
+// PROMPT AND PARSING
+void    the_prompt(void);
+
 char **environment;
 
 
