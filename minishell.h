@@ -37,14 +37,15 @@ typedef struct	s_node
 {
 	enum e_node_type type;
 	char **args;
-	void *left;
-	void *right;
+	struct s_node *left;
+	struct s_node *right;
 }				t_node;
 
 char **environment;
 
 // BTREE UTILS
 void	btree_delete(t_node *node);
+t_node  *btree_node_new(int type, char **args);
 
 // ENV UTILS
 int     valid_envar_id(const char *n);

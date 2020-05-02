@@ -10,7 +10,7 @@ $(NAME) : libft minishlib
 BUILTINS =	change_dir.c echo.c env.c \
 			export.c ft_pwd.c unset.c
 
-MINISHFCT = env_tool.c ft_perrorc.c
+MINISHFCT = env_tool.c ft_perrorc.c btree_delete.c btree_node_new.c
 
 ALL_SRCS = $(MINISHFCT) $(addprefix builtins/,$(BUILTINS))
 

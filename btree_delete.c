@@ -1,6 +1,6 @@
 // 42 HEADER
 
-#include "libft.h"
+#include "minishell.h"
 
 /*
 **	[NOM] : btree_delete()
@@ -9,13 +9,12 @@
 **
 **	supprime tout les nodes d'un arbre binaire
 **	la mémoire est libérée et le pointeur root mis à NULL
-**
-**	supporte n'importe quel structure de node du moment que celle ci
-**	possèdes les élements void *left && void *right
 */
 
-void	btree_delete(void *node)
+void	btree_delete(t_node *node)
 {
+	if (!node)
+		return ;
 	btree_delete(node->left);
 	btree_delete(node->right);
 	free(node);
