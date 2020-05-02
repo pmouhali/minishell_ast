@@ -15,7 +15,34 @@
 
 #define ABS(x) x > 0 ? x : -x 
 
+// operators list : ; && || | > >> <
+// tout ce qui n'est pas du type COMMAND est aussi du type OPERATOR (non défini)
+
+enum	e_node_type
+{
+	COMMAND,
+	DEFAULT,
+	AND,
+	OR,
+	PIPE,
+	REDIR_OUT_1,
+	REDIR_OUT_2,
+	REDIR_IN_1
+};
+
+
+typedef struct	s_node
+{
+	enum e_node_type type;
+	char **args;
+	void *left;
+	void *right;
+}				t_node;
+
 char **environment;
+
+// BTREE UTILS
+void	btree_delete(t_node *node);
 
 // ENV UTILS
 int     valid_envar_id(const char *n);
@@ -32,8 +59,5 @@ int             change_dir(char **arg);
 
 // ERROR MANAGEMENT
 void    ft_perrorc(const char *from, const char *arg, const char *msg);
-
-char **environment;
-
 
 #endif
