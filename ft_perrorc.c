@@ -19,17 +19,15 @@
 
 void	ft_perrorc(const char *from, const char *arg, const char *msg)
 {
-	if (from)
-	{
-		ft_putstr(from);	
-		ft_putstr(": ");
-	}
-	if (arg)
-	{
-		ft_putstr(arg);	
-		ft_putstr(": ");
-	}
-	if (msg)
-		ft_putstr(msg);	
-	ft_putstr("\n");
+	int fr;
+	int ar;
+	int ms;
+
+	fr = ft_strlen(from);
+	ar = ft_strlen(arg);
+	ms = ft_strlen(msg);
+	ft_dprintf(2, "%.*s%.*s%.*s%.*s%.*s\n",
+	fr, from, ar ? 2 : 0, ": ",
+	ar, arg, ms ? 2 : 0, ": ",
+	ms, msg);
 }

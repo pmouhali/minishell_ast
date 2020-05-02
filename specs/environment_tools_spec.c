@@ -3,7 +3,7 @@
 
 int	main(int ac, char **av, char **envp)
 {
-	environment = (char**)ft_tabdup((const void**)envp, (void*)&strdup);
+	environment = (char**)ft_tabdup((const void**)envp, (void*)&ft_strdup);
 
 	/*
 	printf("tests for keycmp:\n");

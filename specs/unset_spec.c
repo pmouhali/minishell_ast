@@ -12,17 +12,17 @@ int	main(void)
 	char *without_error[] = {
 		"ft_export", "UNINITIALIZED", "EMPTY=", "USER=emperor Zorg-7", NULL
 	};
-	r = ft_export(without_error);
+	r = ft_unset(without_error);
 	i = ft_tabindex((const void **)environment, without_error[1], (void*)&ft_strcmp);
-	ft_dprintf(1, i == -1 ? "%s failed to be pushed\n" : "%s successfully pushed\n",
+	ft_dprintf(1, i != -1 ? "%s failed to be deleted\n" : "%s successfully deleted\n",
 		without_error[1]
 	);
 	i = ft_tabindex((const void **)environment, without_error[2], (void*)&ft_strcmp);
-	ft_dprintf(1, i == -1 ? "%s failed to be pushed\n" : "%s successfully pushed\n",
+	ft_dprintf(1, i != -1 ? "%s failed to be deleted\n" : "%s successfully deleted\n",
 		without_error[2]
 	);
 	i = ft_tabindex((const void **)environment, without_error[3], (void*)&ft_strcmp);
-	ft_dprintf(1, i == -1 ? "%s failed to be pushed\n" : "%s successfully pushed\n",
+	ft_dprintf(1, i != -1 ? "%s failed to be deleted\n" : "%s successfully deleted\n",
 		without_error[3]
 	);
 	ft_dprintf(1, "shouldn't throw any error, expect 0 got %d\n\n", r);
@@ -30,17 +30,17 @@ int	main(void)
 	char *with_error[] = {
 		"ft_export", "OLDPWD=/Projects/invade_saturn", "x,y=658,-89563", "80085=xxxxx", NULL
 	};
-	r = ft_export(with_error);
+	r = ft_unset(with_error);
 	i = ft_tabindex((const void **)environment, with_error[1], (void*)&ft_strcmp);
-	ft_dprintf(1, i == -1 ? "%s failed to be pushed\n" : "%s successfully pushed\n",
+	ft_dprintf(1, i != -1 ? "%s failed to be deleted\n" : "%s successfully deleted\n",
 		with_error[1]
 	);
 	i = ft_tabindex((const void **)environment, with_error[2], (void*)&ft_strcmp);
-	ft_dprintf(1, i != -1 ? "%s shouldn't have been pushed\n" : "%s successfully not pushed\n",
+	ft_dprintf(1, i != -1 ? "%s shouldn't have been deleted\n" : "%s successfully not deleted\n",
 		with_error[2]
 	);
 	i = ft_tabindex((const void **)environment, with_error[3], (void*)&ft_strcmp);
-	ft_dprintf(1, i != -1 ? "%s shouldn't have been pushed\n" : "%s successfully not pushed\n",
+	ft_dprintf(1, i != -1 ? "%s shouldn't have been deleted\n" : "%s successfully not deleted\n",
 		with_error[3]
 	);
 	ft_dprintf(1, "should throw 2 errors, expect 1 got %d\n\n", r);
@@ -48,9 +48,9 @@ int	main(void)
 	char *only_one_arg[] = {
 		"ft_export", "EMPTY", NULL
 	};
-	r = ft_export(only_one_arg);
+	r = ft_unset(only_one_arg);
 	i = ft_tabindex((const void **)environment, only_one_arg[1], (void*)&ft_strcmp);
-	ft_dprintf(1, i != -1 ? "%s shouldn't have been pushed\n" : "%s successfully not pushed\n",
+	ft_dprintf(1, i != -1 ? "%s shouldn't have been deleted\n" : "%s successfully not deleted\n",
 		only_one_arg[1]
 	);
 	ft_dprintf(1, "shouldn't throw any error, expect 0 got %d\n\n", r);

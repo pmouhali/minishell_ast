@@ -29,7 +29,7 @@ static int	display_mode(void)
 	int e;
 	char **t;
 
-	t = (char**)ft_tabdup((const void**)environment, (void*)&strdup);
+	t = (char**)ft_tabdup((const void**)environment, (void*)&ft_strdup);
 	ft_tabsort((void **)t, (void*)&ft_strcmp);
 	i = -1;
 	while (t[++i])
