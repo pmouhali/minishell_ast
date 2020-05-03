@@ -18,12 +18,10 @@
 #define ABS(x) x > 0 ? x : -x 
 
 // operators list : ; && || | > >> <
-// tout ce qui n'est pas du type COMMAND est aussi du type OPERATOR (non défini)
 
 enum	e_node_type
 {
 	COMMAND,
-	DEFAULT,
 	AND,
 	OR,
 	PIPE,
@@ -41,7 +39,14 @@ typedef struct	s_node
 	struct s_node *right;
 }				t_node;
 
+typedef int		(*t_eval_node_function)(t_node *n, void *options);
+
 char **environment;
+
+// PROCESS MANAGEMENT
+int	process_container(t_node *root);
+int	eval_node(t_node *node, void *options);
+int	run_process(t_node *n, void *options);
 
 // BTREE UTILS
 void	btree_delete(t_node *node);
