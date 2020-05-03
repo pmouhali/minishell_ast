@@ -10,12 +10,16 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <errno.h>
 #include <string.h>
 
-#define ABS(x) x > 0 ? x : -x 
+
+#define ABS(x) x > 0 ? x : -x // who are u ? what are u doin here ?
+
+#define COMMAND_NOT_FOUND 127 
 
 // operators list : ; && || | > >> <
 
@@ -29,7 +33,6 @@ enum	e_node_type
 	REDIR_OUT_2,
 	REDIR_IN_1
 };
-
 
 typedef struct	s_node
 {
@@ -47,6 +50,9 @@ char **environment;
 int	process_container(t_node *root);
 int	eval_node(t_node *node, void *options);
 int	run_process(t_node *n, void *options);
+
+char    *try_path(char *path);
+char    *build_path(char *paths, char *bname);
 
 // BTREE UTILS
 void	btree_delete(t_node *node);

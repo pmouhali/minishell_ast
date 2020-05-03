@@ -19,7 +19,8 @@ int		process_container(t_node *root)
 	int pid;
 	int status;
 
-	eval_node(root, NULL);
+	if ((status = eval_node(root, NULL)))
+		return (status);
 	pid = 1;
 	while (pid > 0)
 		pid = wait(&status);

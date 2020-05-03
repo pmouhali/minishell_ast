@@ -12,6 +12,15 @@
 
 #include "libft.h"
 
+/*
+**	Valeurs pour le paramètre 'c' :
+**
+**	1 pour free le premier argument
+**	2 pour free le deuxieme
+**	3 pour free les deux
+**
+*/
+
 char	*ft_strjoinplus(char *s1, char *s2, int c)
 {
 	char *str_new;
