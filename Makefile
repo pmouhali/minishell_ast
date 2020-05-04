@@ -12,7 +12,8 @@ BUILTINS =	change_dir.c echo.c env.c \
 
 MINISHFCT = env_tool.c ft_perrorc.c btree_delete.c btree_node_new.c \
 			process_container.c eval_node.c run_process.c \
-			try_path.c build_path.c
+			try_path.c build_path.c \
+			process_tools.c
 
 ALL_SRCS = $(MINISHFCT) $(addprefix builtins/,$(BUILTINS))
 
