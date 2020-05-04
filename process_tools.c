@@ -24,5 +24,7 @@ int		call_builtin_function(int builtin_index, char *args[])
 
 char	*isbinary(char *bname)
 {
-	 return (build_path(get_key_value(environment, "PATH"), bname));
+	if (try_path(bname))
+		return (bname);
+	return (build_path(get_key_value(environment, "PATH"), bname));
 }

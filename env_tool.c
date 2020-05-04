@@ -29,7 +29,9 @@ char    *get_key_value(char **tab, char *key)
 {
 	int i;
 	char *ret;
-	
+
+	if (tab == NULL)
+		return (NULL);
     i = ft_tabindex((const void**)tab, (const void*)key, (void*)&keycmp);
 	if (i == -1)
 		return (NULL);

@@ -22,6 +22,8 @@ char	*build_path(char *paths, char *bname)
 	char **dirs;
 	int i;
 
+	if (!paths)
+		return (NULL);
 	dirs = ft_split(paths, ':');
 	i = -1;
 	while (dirs[++i])
