@@ -37,5 +37,6 @@ char	*build_path(char *paths, char *bname)
 		}
 	}
 	ft_tabfree((void**)dirs);
+	errno = COMMAND_NOT_FOUND;
 	return (NULL);
 }

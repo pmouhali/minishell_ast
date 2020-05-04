@@ -26,5 +26,7 @@ char	*isbinary(char *bname)
 {
 	if (try_path(bname))
 		return (bname);
+	if (errno == EISDIR)
+		return (NULL);
 	return (build_path(get_key_value(environment, "PATH"), bname));
 }

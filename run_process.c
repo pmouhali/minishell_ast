@@ -32,5 +32,5 @@ int		run_process(t_node *n, void *options)
 		free(bpath);
 		return (x);
 	}
-	return (COMMAND_NOT_FOUND);
+	return (errno);
 }
