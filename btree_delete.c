@@ -18,6 +18,7 @@ void	btree_delete(t_node *node)
 	btree_delete(node->left);
 	btree_delete(node->right);
 	ft_tabfree((void**)node->args);
+	node->args = NULL;
 	free(node);
 	node = NULL;
 }

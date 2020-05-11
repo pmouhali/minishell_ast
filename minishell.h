@@ -26,12 +26,13 @@
 enum	e_node_type
 {
 	COMMAND,
+	REDIR_OUT_1,
+	REDIR_OUT_2,
+	REDIR_IN_1,
 	AND,
 	OR,
 	PIPE,
-	REDIR_OUT_1,
-	REDIR_OUT_2,
-	REDIR_IN_1
+	OPERATOR_ARG
 };
 
 typedef struct	s_node
@@ -52,6 +53,8 @@ char **environment;
 int	process_container(t_node *root);
 int	eval_node(t_node *node, void *options);
 int	run_process(t_node *n, void *options);
+int     redirect_out_trunc(t_node *n, void *options);
+int     redirect_out_append(t_node *n, void *options);
 
 // PROCESS UTILS
 int     isbuiltin(char *bname);
