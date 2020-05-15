@@ -14,9 +14,6 @@
 
 #include "minishell.h"
 
-// TODO:
-// SI ON GARDE CETTE FONCTION, L'OPTIMISER POUR EVITER TROIS APPELS A WRITE
-
 void	ft_perrorc(const char *from, const char *arg, const char *msg)
 {
 	int fr;

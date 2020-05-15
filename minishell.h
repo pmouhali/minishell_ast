@@ -55,6 +55,7 @@ int	eval_node(t_node *node, void *options);
 int	run_process(t_node *n, void *options);
 int     redirect_out_trunc(t_node *n, void *options);
 int     redirect_out_append(t_node *n, void *options);
+int     redirect_in(t_node *n, void *options);
 
 // PROCESS UTILS
 int     isbuiltin(char *bname);
