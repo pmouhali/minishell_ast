@@ -142,15 +142,14 @@ int		main(int ac, char **av, char **envp) // redirection multiples
 	printf("===TEST6=== commande args < __1.testfile > __3.testfile < __2.testfile\n\n");
 	args = (char**)ft_tabdup((const void**)c_grep, (void*)&ft_strdup);
 	tf1 = (char**)ft_tabdup((const void**)tfile1, (void*)&ft_strdup);
-	tfile3[0] = "file_that_does_not_exists";
-	tf2 = (char**)ft_tabdup((const void**)tfile3, (void*)&ft_strdup);
-	tf3 = (char**)ft_tabdup((const void**)tfile2, (void*)&ft_strdup);
+	tf2 = (char**)ft_tabdup((const void**)tfile2, (void*)&ft_strdup);
+	tf3 = (char**)ft_tabdup((const void**)tfile3, (void*)&ft_strdup);
 
 	ast = btree_node_new(REDIR_IN_1, NULL);
 	ast->left = btree_node_new(OPERATOR_ARG, tf1);
 	ast->right = btree_node_new(REDIR_IN_1, NULL);
 	ast->right->left = btree_node_new(OPERATOR_ARG, tf2);
-	ast->right->right = btree_node_new(REDIR_IN_1, NULL);
+	ast->right->right = btree_node_new(REDIR_OUT_1, NULL);
 	ast->right->right->left = btree_node_new(OPERATOR_ARG, tf3);
 	ast->right->right->right = btree_node_new(COMMAND, args);
 
