@@ -32,5 +32,6 @@ int		run_process(t_node *n, void *options)
 		free(bpath);
 		return (x);
 	}
+	ft_perrorc("minishell", n->args[0], errno == EISDIR ? strerror(EISDIR) : "command not found");
 	return (errno);
 }

@@ -29,9 +29,9 @@ enum	e_node_type
 	REDIR_OUT_1,
 	REDIR_OUT_2,
 	REDIR_IN_1,
+	PIPE,
 	AND,
 	OR,
-	PIPE,
 	OPERATOR_ARG
 };
 

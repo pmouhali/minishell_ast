@@ -19,11 +19,11 @@ int		process_container(t_node *root)
 	int pid;
 	int status;
 
-//	if ((status = eval_node(root, NULL)))
-//		return (status);
 	status = eval_node(root, NULL);
 	pid = 1;
 	while (pid > 0)
 		pid = wait(&status);
+	if (status > 1000)
+		return (status);
 	return (WEXITSTATUS(status));
 }
