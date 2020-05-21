@@ -2,7 +2,7 @@
 
 #include "minishell.h"
 
-int		redirect_out_trunc(t_node *n, void *options)
+int		redirect_out_trunc(t_node *n, t_options *options)
 {
 	int file_fd;
 	int	stdout_fd_save;

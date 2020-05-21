@@ -2,7 +2,7 @@
 
 #include "minishell.h"
 
-int		redirect_in(t_node *n, void *options)
+int		redirect_in(t_node *n, t_options *options)
 {
 	int file_fd;
 	int	stdin_save;

@@ -20,8 +20,8 @@
 #define ABS(x) x > 0 ? x : -x // who are u ? what are u doin here ?
 
 #define COMMAND_NOT_FOUND 1270 
-
-// operators list : ; && || | > >> <
+#define RDEND 0
+#define WREND 1
 
 enum	e_node_type
 {
@@ -43,24 +43,37 @@ typedef struct	s_node
 	struct s_node *right;
 }				t_node;
 
-typedef int		(*t_eval_node_function)(t_node *n, void *options);
+typedef struct	s_options
+{
+	int	current_pwrite;
+	int	current_pread;
+	int	previous_pwrite;
+	int	previous_pread;
+
+}				t_options;
+
+typedef int		(*t_eval_node_function)(t_node *n, t_options *options);
 
 typedef int		(*t_builtin_function)(char *args[]);
 
 char **environment;
 
 // PROCESS MANAGEMENT
-int	process_container(t_node *root);
-int	eval_node(t_node *node, void *options);
-int	run_process(t_node *n, void *options);
-int     redirect_out_trunc(t_node *n, void *options);
-int     redirect_out_append(t_node *n, void *options);
-int     redirect_in(t_node *n, void *options);
+int		process_container(t_node *root);
+int		eval_node(t_node *node, t_options *options);
+int		run_process(t_node *n, t_options *options);
+int     redirect_out_trunc(t_node *n, t_options *options);
+int     redirect_out_append(t_node *n, t_options *options);
+int     redirect_in(t_node *n, t_options *options);
+int     pipe_processes(t_node *n, t_options *options);
 
 // PROCESS UTILS
 int     isbuiltin(char *bname);
 int     call_builtin_function(int builtin_index, char *args[]);
 char    *isbinary(char *bname);
+
+// FD UTILS
+int     close_pipe(int *read_end, int *write_end);
 
 char    *try_path(char *path);
 char    *build_path(char *paths, char *bname);
