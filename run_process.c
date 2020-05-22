@@ -25,9 +25,9 @@ static int	new_piped_process(char *binpath, t_node *n, t_options *opt)
 	if (pid == 0) // child process
 	{
 		if (opt->previous_pread != -1)
-			dup2(opt->previous_pread, STDIN_FILENO);		// Where the process gets the data : not the stdin, but the pipe file descriptor
+			dup2(opt->previous_pread, STDIN_FILENO);
 		if (opt->current_pwrite != -1)
-			dup2(opt->current_pwrite, STDOUT_FILENO);		// Where the process writes the data : not the stdout, but the pipe file descriptor
+			dup2(opt->current_pwrite, STDOUT_FILENO);
 		close_pipe(&opt->previous_pread, &opt->previous_pwrite);
 		close_pipe(&opt->current_pread, &opt->current_pwrite);
 		execve(binpath, n->args, environment);
