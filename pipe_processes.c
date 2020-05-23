@@ -18,6 +18,7 @@ int		pipe_processes(t_node *n, t_options *options)
 	options->current_pread = p[RDEND];
 	options->current_pwrite = p[WREND];
 	eval_node(n->left, options);
+	close_pipe(&options->previous_pread, &options->previous_pwrite);
 	options->previous_pread = p[RDEND];
 	options->previous_pwrite = p[WREND];
 	options->current_pread = -1;
