@@ -48,10 +48,10 @@ int		run_process(t_node *n, t_options *options)
 	if (!n || n->type != COMMAND || n->args == NULL)
 		return (-1);
 	if ((x = isbuiltin(n->args[0])) != -1)
-		return (call_builtin_function(x, n->args));
+		return (call_builtin_function(x, n->args, options));
 	if ((bpath = isbinary(n->args[0])))
 	{
-		if (options->current_pread != -1 || options->previous_pwrite != -1)
+		if (options->current_pwrite != -1 || options->previous_pread != -1)
 			x = new_piped_process(bpath, n, options);
 		else
 			x = new_process(bpath, n);

@@ -36,6 +36,7 @@ int		main(int ac, char **av, char **envp) // redirection multiples
 	t_node *ast;
 
 	//===TEST1=== commande args > __1.testfile > __2.testfile
+	printf("TEST1 est censé effacer le contenu de __1.testfile puisque ouverture en truncation, et le resultat de la commande doit se trouver SEUL dans __2.testfile\n");
 	args = (char**)ft_tabdup((const void**)c_ls, (void*)&ft_strdup);
 	tf1 = (char**)ft_tabdup((const void**)tfile1, (void*)&ft_strdup);
 	tf2 = (char**)ft_tabdup((const void**)tfile2, (void*)&ft_strdup);
@@ -48,12 +49,13 @@ int		main(int ac, char **av, char **envp) // redirection multiples
 
 	pc_r = process_container(ast);
 	
-	printf("[if you don't see this there is a problem with the stdout file descriptor]\nprocess_container exit code = %d, %s\n", pc_r, strerror(errno));
+	printf("[%d] %s\n\n", pc_r, strerror(errno));
 
 	btree_delete(ast); // btree_delete free aussi le char** du node donc args est free via cette fonction
 	//===TEST1===
 
 	//===TEST2=== commande args >> __2.testfile >> __1.testfile
+	printf("TEST2 le contenu de __2.testfile ne doit pas être effacé, et le resultat de la commande doit se trouver a la suite du contenu dans __1.testfile\n");
 	args = (char**)ft_tabdup((const void**)c_echo, (void*)&ft_strdup);
 	tf1 = (char**)ft_tabdup((const void**)tfile1, (void*)&ft_strdup);
 	tf2 = (char**)ft_tabdup((const void**)tfile2, (void*)&ft_strdup);
@@ -66,12 +68,13 @@ int		main(int ac, char **av, char **envp) // redirection multiples
 
 	pc_r = process_container(ast);
 	
-	printf("[if you don't see this there is a problem with the stdout file descriptor]\nprocess_container exit code = %d, %s\n", pc_r, strerror(errno));
+	printf("[%d] %s\n", pc_r, strerror(errno));
 
 	btree_delete(ast);
 	//===TEST2===
 
 	//===TEST3=== commande args >> __1.testfile >> __2.testfile > __3.testfile
+	printf("TEST3 ne doit pas effacer les contenus de __1 et __2.tesfile et le resultat de la commande doit se trouver SEUL dans __3.testfile\n");
 	args = (char**)ft_tabdup((const void**)c_cat, (void*)&ft_strdup);
 	tf1 = (char**)ft_tabdup((const void**)tfile1, (void*)&ft_strdup);
 	tf2 = (char**)ft_tabdup((const void**)tfile2, (void*)&ft_strdup);
@@ -87,13 +90,13 @@ int		main(int ac, char **av, char **envp) // redirection multiples
 
 	pc_r = process_container(ast);
 	
-	printf("[if you don't see this there is a problem with the stdout file descriptor]\nprocess_container exit code = %d, %s\n", pc_r, strerror(errno));
+	printf("[%d] %s\n", pc_r, strerror(errno));
 
 	btree_delete(ast);
 	//===TEST3===
 
 	//===TEST4=== commande args < __1.testfile < __3.testfile < __2.testfile
-	printf("===TEST4=== commande args < __1.testfile < __3.testfile < __2.testfile\n\n");
+	printf("===TEST4=== grep \"un\" < __1.testfile < __3.testfile < __2.testfile : doit lire depuis __2.testfile\n\n");
 	args = (char**)ft_tabdup((const void**)c_grep, (void*)&ft_strdup);
 	tf1 = (char**)ft_tabdup((const void**)tfile1, (void*)&ft_strdup);
 	tf2 = (char**)ft_tabdup((const void**)tfile3, (void*)&ft_strdup);
@@ -109,13 +112,13 @@ int		main(int ac, char **av, char **envp) // redirection multiples
 
 	pc_r = process_container(ast);
 	
-	printf("\nprocess_container() exit code : %d : %s\n", pc_r, strerror(errno));
+	printf("\nEXIT CODE [%d] %s\n", pc_r, strerror(errno));
 
 	btree_delete(ast);
 	//===TEST4===
 
 	//===TEST5=== commande args < __1.testfile < file_that_does_not_exists < __2.testfile
-	printf("===TEST5=== commande args < __1.testfile < file_that_does_not_exists < __2.testfile\n\n");
+	printf("===TEST5=== grep \"un\" < __1.testfile < file_that_does_not_exists < __2.testfile : doit seulement afficher un message d'erreur\n\n");
 	args = (char**)ft_tabdup((const void**)c_grep, (void*)&ft_strdup);
 	tf1 = (char**)ft_tabdup((const void**)tfile1, (void*)&ft_strdup);
 	tfile3[0] = "file_that_does_not_exists";
@@ -133,13 +136,13 @@ int		main(int ac, char **av, char **envp) // redirection multiples
 
 	pc_r = process_container(ast);
 	
-	printf("\nprocess_container() exit code : %d : %s\n", pc_r, strerror(errno));
+	printf("\nEXIT CODE [%d] %s\n", pc_r, strerror(errno));
 
 	btree_delete(ast);
 	//===TEST5===
 
 	//===TEST6=== commande args < __1.testfile > __3.testfile < __2.testfile
-	printf("===TEST6=== commande args < __1.testfile > __3.testfile < __2.testfile\n\n");
+	printf("===TEST6=== grep un < __1.testfile > __3.testfile < __2.testfile: doit lire depuis __2.testfile et écrire dans __3.testfile\n\n");
 	args = (char**)ft_tabdup((const void**)c_grep, (void*)&ft_strdup);
 	tf1 = (char**)ft_tabdup((const void**)tfile1, (void*)&ft_strdup);
 	tf2 = (char**)ft_tabdup((const void**)tfile2, (void*)&ft_strdup);
@@ -155,7 +158,7 @@ int		main(int ac, char **av, char **envp) // redirection multiples
 
 	pc_r = process_container(ast);
 	
-	printf("\nprocess_container() exit code : %d : %s\n", pc_r, strerror(errno));
+	printf("\nEXIT CODE [%d] %s\n", pc_r, strerror(errno));
 
 	btree_delete(ast);
 	//===TEST6===

@@ -69,7 +69,7 @@ int     pipe_processes(t_node *n, t_options *options);
 
 // PROCESS UTILS
 int     isbuiltin(char *bname);
-int     call_builtin_function(int builtin_index, char *args[]);
+int     call_builtin_function(int builtin_index, char *args[], t_options *opt);
 char    *isbinary(char *bname);
 
 // FD UTILS

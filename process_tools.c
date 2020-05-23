@@ -17,9 +17,15 @@ int		isbuiltin(char *bname)
 	));
 }
 
-int		call_builtin_function(int builtin_index, char *args[])
+int		call_builtin_function(int builtin_index, char *args[], t_options *opt)
 {
-	return (g_builtin_functions[builtin_index](args));
+	int r;
+	
+	TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	SI OPTIONS : GERER DIRECTION ET PIPES
+	r = g_builtin_functions[builtin_index](args);
+	RESTORER STDOUT_FILENO && STDIN_FILENO
+	return (r);
 }
 
 char	*isbinary(char *bname)

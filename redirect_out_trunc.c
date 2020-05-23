@@ -5,32 +5,18 @@
 int		redirect_out_trunc(t_node *n, t_options *options)
 {
 	int file_fd;
-	int	stdout_fd_save;
+	int	tmp;
 	int ret;
 
 	if (n->left->type != OPERATOR_ARG || n->type != REDIR_OUT_1)
 		return (-1);
 	if ((file_fd = open(n->left->args[0], O_WRONLY | O_CREAT | O_TRUNC, 0666)) == -1)
 		return (-1);
-	if ((stdout_fd_save = dup(STDOUT_FILENO)) == -1)
-	{
-		close(file_fd);
-		return (-1);
-	}
-	if (dup2(file_fd, STDOUT_FILENO) == -1)
-	{
-		close(file_fd);
-		close(stdout_fd_save);
-		return (-1);
-	}
+	tmp = options->current_pwrite;
+	options->current_pwrite = file_fd;
 	ret = eval_node(n->right, options);
+	options->current_pwrite = tmp;
 	close(file_fd);
-	if (dup2(stdout_fd_save, STDOUT_FILENO) == -1)
-	{
-		close(stdout_fd_save);
-		return (-1);
-	}
-	close(stdout_fd_save);
 	return (ret);
 }
 

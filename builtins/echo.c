@@ -29,8 +29,8 @@ int		echo(char *args[])
 		nl = false;
 	i--;
 	while (args[++i])
-		ft_dprintf(1, args[i + 1] == NULL ? "%s" : "%s ", args[i]);
+		ft_dprintf(STDOUT_FILENO, args[i + 1] == NULL ? "%s" : "%s ", args[i]);
 	if (nl)
-		ft_putstr("\n");
+		ft_dprintf(STDOUT_FILENO, "\n");
 	return (0);
 }

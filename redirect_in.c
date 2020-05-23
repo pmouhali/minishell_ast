@@ -5,7 +5,7 @@
 int		redirect_in(t_node *n, t_options *options)
 {
 	int file_fd;
-	int	stdin_save;
+	int	tmp;
 	int ret;
 
 	if (n->left->type != OPERATOR_ARG || n->type != REDIR_IN_1)
@@ -15,25 +15,11 @@ int		redirect_in(t_node *n, t_options *options)
 		ft_perrorc("minishell", n->left->args[0], strerror(errno));
 		return (-1);
 	}
-	if ((stdin_save = dup(STDIN_FILENO)) == -1)
-	{
-		close(file_fd);
-		return (-1);
-	}
-	if (dup2(file_fd, STDIN_FILENO) == -1)
-	{
-		close(file_fd);
-		close(stdin_save);
-		return (-1);
-	}
+	tmp = options->previous_pread;
+	options->previous_pread = file_fd;
 	ret = eval_node(n->right, options);
+	options->previous_pread = tmp;
 	close(file_fd);
-	if (dup2(stdin_save, STDIN_FILENO) == -1)
-	{
-		close(stdin_save);
-		return (-1);
-	}
-	close(stdin_save);
 	return (ret);
 }
 
