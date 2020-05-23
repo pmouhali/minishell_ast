@@ -38,11 +38,11 @@ int		main(int ac, char **av, char **envp)
 	//=== TEST2 === cat minishell.h | grep '#' | cut -c2-100 | cat -e | rev | grep '$>' | tr -d "$" | rev | tr " " "*" | wc 
 
 	ccat[1] = "minishell.h"; char **alloc_cat = (char**)ft_tabdup((const void**)ccat, (void*)&ft_strdup);
-	cgrep[1] = "#"; alloc_grep = (char**)ft_tabdup((const void**)cgrep, (void*)&ft_strdup);
+	cgrep[1] = "#"; alloc_grep = (char**)ft_tabdup((const void**)cgrep, (void*)&ft_strdup); cgrep[1] = ".h";
 	ccut[1] = "-c2-100"; char **alloc_cut = (char**)ft_tabdup((const void**)ccut, (void*)&ft_strdup);
 	ccat[1] = "-e"; char **alloc_cat2 = (char**)ft_tabdup((const void**)ccat, (void*)&ft_strdup);
 	alloc_rev = (char**)ft_tabdup((const void**)crev, (void*)&ft_strdup);
-	cgrep[1] = "$>"; char **alloc_grep2 = (char**)ft_tabdup((const void**)cgrep, (void*)&ft_strdup);
+	cgrep[1] = "$>"; char **alloc_grep2 = (char**)ft_tabdup((const void**)cgrep, (void*)&ft_strdup); cgrep[1] = ".h";
 	ctr[1] = "-d"; ctr[2] = "$"; char **alloc_tr = (char**)ft_tabdup((const void**)ctr, (void*)&ft_strdup);
 	char **alloc_rev2 = (char**)ft_tabdup((const void**)crev, (void*)&ft_strdup);
 	ctr[1] = " "; ctr[2] = "*"; char **alloc_tr2 = (char**)ft_tabdup((const void**)ctr, (void*)&ft_strdup);
@@ -73,6 +73,76 @@ int		main(int ac, char **av, char **envp)
 
 	btree_delete(ast);
 	//=== TEST2 ===
+
+	//=== TEST3 === ls | idonotexistonurcomputer | rev
+
+	alloc_ls = (char**)ft_tabdup((const void**)cls, (void*)&ft_strdup);
+	char **alloc_not_real = (char**)ft_tabdup((const void**)cnot_real, (void*)&ft_strdup);
+	alloc_rev = (char**)ft_tabdup((const void**)crev, (void*)&ft_strdup);
+
+	ast = btree_node_new(PIPE, NULL);
+	ast->left = btree_node_new(COMMAND, alloc_ls);
+	ast->right = btree_node_new(PIPE, NULL);
+	ast->right->left = btree_node_new(COMMAND, alloc_not_real);
+	ast->right->right = btree_node_new(COMMAND, alloc_rev);
+
+	pc_r = process_container(ast);
+	printf("EXIT CODE [%d] %s\n", pc_r, strerror(pc_r));
+
+	btree_delete(ast);
+	//=== TEST3 ===
+
+	//=== TEST4 === ls -la | grep '.h' | rev >> __1.testfile
+
+	alloc_ls = (char**)ft_tabdup((const void**)cls, (void*)&ft_strdup);
+	alloc_grep = (char**)ft_tabdup((const void**)cgrep, (void*)&ft_strdup);
+	alloc_rev = (char**)ft_tabdup((const void**)crev, (void*)&ft_strdup);
+	char *testfile[] = {"__1.testfile", NULL};
+	char **alloc_testfile = (char**)ft_tabdup((const void**)testfile, (void*)&ft_strdup);
+
+	ast = btree_node_new(PIPE, NULL);
+	ast->left = btree_node_new(COMMAND, alloc_ls);
+	ast->right = btree_node_new(PIPE, NULL);
+	ast->right->left = btree_node_new(COMMAND, alloc_grep);
+	ast->right->right = btree_node_new(REDIR_OUT_2, NULL);
+	ast->right->right->left = btree_node_new(OPERATOR_ARG, alloc_testfile);
+	ast->right->right->right = btree_node_new(COMMAND, alloc_rev);
+
+	pc_r = process_container(ast);
+	printf("EXIT CODE [%d] %s\n", pc_r, strerror(pc_r));
+
+	btree_delete(ast);
+	//=== TEST4 ===
+
+	//=== TEST5 === ls -la | grep '.h' >> __1.testfile | rev 
+
+	alloc_ls = (char**)ft_tabdup((const void**)cls, (void*)&ft_strdup);
+	alloc_grep = (char**)ft_tabdup((const void**)cgrep, (void*)&ft_strdup);
+	alloc_rev = (char**)ft_tabdup((const void**)crev, (void*)&ft_strdup);
+	alloc_testfile = (char**)ft_tabdup((const void**)testfile, (void*)&ft_strdup);
+
+	ast = btree_node_new(PIPE, NULL);
+	ast->left = btree_node_new(COMMAND, alloc_ls);
+	ast->right = btree_node_new(PIPE, NULL);
+	ast->right->left = btree_node_new(REDIR_OUT_2, NULL);
+	ast->right->left->left = btree_node_new(OPERATOR_ARG, alloc_testfile);
+	ast->right->left->right = btree_node_new(COMMAND, alloc_grep);
+	ast->right->right = btree_node_new(COMMAND, alloc_rev);
+	/*
+								PIPE
+							   /    \
+				     COMMAND ls		PIPE
+					               /    \
+						REDIR_OUT_2		 COMMAND rev
+					   /           \
+	   OPERATOR_ARG testfile	   COMMAND grep
+	*/
+
+	pc_r = process_container(ast);
+	printf("EXIT CODE [%d] %s\n", pc_r, strerror(pc_r));
+
+	btree_delete(ast);
+	//=== TEST5 ===
 
 
 	ft_tabfree((void**)environment);	

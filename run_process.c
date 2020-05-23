@@ -28,6 +28,9 @@ static int	new_piped_process(char *binpath, t_node *n, t_options *opt)
 			dup2(opt->previous_pread, STDIN_FILENO);
 		if (opt->current_pwrite != -1)
 			dup2(opt->current_pwrite, STDOUT_FILENO);
+		//DEBUUGG
+//		printf("STDOUT_FILENO = %d\n", STDOUT_FILENO);
+		//DEBUUGG
 		close_pipe(&opt->previous_pread, &opt->previous_pwrite);
 		close_pipe(&opt->current_pread, &opt->current_pwrite);
 		execve(binpath, n->args, environment);
@@ -55,6 +58,6 @@ int		run_process(t_node *n, t_options *options)
 		free(bpath);
 		return (x);
 	}
-	ft_perrorc("minishell", n->args[0], errno == EISDIR ? strerror(EISDIR) : "command not found");
+	ft_perrorc("", n->args[0], errno == EISDIR ? strerror(EISDIR) : "command not found");
 	return (errno);
 }

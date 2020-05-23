@@ -24,7 +24,7 @@ void	ft_perrorc(const char *from, const char *arg, const char *msg)
 	ar = ft_strlen(arg);
 	ms = ft_strlen(msg);
 	ft_dprintf(2, "%.*s%.*s%.*s%.*s%.*s\n",
-	fr, from, ar ? 2 : 0, ": ",
-	ar, arg, ms ? 2 : 0, ": ",
+	fr, from, fr ? 2 : 0, ": ",
+	ar, arg, ar ? 2 : 0, ": ",
 	ms, msg);
 }
