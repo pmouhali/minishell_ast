@@ -20,11 +20,23 @@ int		isbuiltin(char *bname)
 int		call_builtin_function(int builtin_index, char *args[], t_options *opt)
 {
 	int r;
+	int tmp[2];
 	
-	TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	SI OPTIONS : GERER DIRECTION ET PIPES
+	if (opt->current_pwrite != -1)
+	{
+		tmp[RDEND] = dup(STDIN_FILENO);
+		dup2(opt->current_pwrite, STDOUT_FILENO);
+	}
+	if (opt->previous_pread != -1)
+	{
+		tmp[WREND] = dup(STDOUT_FILENO);
+		dup2(opt->previous_pread, STDIN_FILENO);
+	}
 	r = g_builtin_functions[builtin_index](args);
-	RESTORER STDOUT_FILENO && STDIN_FILENO
+	if (opt->previous_pread != -1)
+		dup2(tmp[RDEND], STDIN_FILENO);
+	if (opt->current_pwrite != -1)
+		dup2(tmp[WREND], STDOUT_FILENO);
 	return (r);
 }
 

@@ -4,6 +4,7 @@ int		main(int ac, char **av, char **envp)
 {
 	environment = (char**)ft_tabdup((const void**)envp, (void*)&ft_strdup); // sert à simuler l'environnment (on en a besoin pour execve principalement)
 
+	char *cenv[] = {"env", NULL};
 	char *ccat[] = {"cat", "", NULL};
 	char *cwc[] = {"wc", NULL};
 	char *ctr[] = {"tr", "", "", NULL};
@@ -18,6 +19,7 @@ int		main(int ac, char **av, char **envp)
 	t_node *ast;
 
 	//=== TEST1 === ls -la | grep '.h' | rev
+	printf("ls -la | grep '.h' | rev\n");
 
 	char **alloc_ls = (char**)ft_tabdup((const void**)cls, (void*)&ft_strdup);
 	char **alloc_grep = (char**)ft_tabdup((const void**)cgrep, (void*)&ft_strdup);
@@ -30,12 +32,13 @@ int		main(int ac, char **av, char **envp)
 	ast->right->right = btree_node_new(COMMAND, alloc_rev);
 
 	pc_r = process_container(ast);
-	printf("EXIT CODE [%d] %s\n", pc_r, strerror(pc_r));
+	printf("EXIT CODE [%d] %s\n\n", pc_r, strerror(pc_r));
 
 	btree_delete(ast);
 	//=== TEST1 === ls -la | grep '.h' | rev
 
 	//=== TEST2 === cat minishell.h | grep '#' | cut -c2-100 | cat -e | rev | grep '$>' | tr -d "$" | rev | tr " " "*" | wc 
+	printf("cat minishell.h | grep '#' | cut -c2-100 | cat -e | rev | grep '$>' | tr -d '$' | rev | tr ' ' '*' | wc\n");
 
 	ccat[1] = "minishell.h"; char **alloc_cat = (char**)ft_tabdup((const void**)ccat, (void*)&ft_strdup);
 	cgrep[1] = "#"; alloc_grep = (char**)ft_tabdup((const void**)cgrep, (void*)&ft_strdup); cgrep[1] = ".h";
@@ -69,12 +72,13 @@ int		main(int ac, char **av, char **envp)
 	ast->right->right->right->right->right->right->right->right->right = btree_node_new(COMMAND, alloc_wc);
 
 	pc_r = process_container(ast);
-	printf("EXIT CODE [%d] %s\n", pc_r, strerror(pc_r));
+	printf("EXIT CODE [%d] %s\n\n", pc_r, strerror(pc_r));
 
 	btree_delete(ast);
 	//=== TEST2 ===
 
 	//=== TEST3 === ls | idonotexistonurcomputer | rev
+	printf("ls | idonotexistonurcomputer | rev\n");
 
 	alloc_ls = (char**)ft_tabdup((const void**)cls, (void*)&ft_strdup);
 	char **alloc_not_real = (char**)ft_tabdup((const void**)cnot_real, (void*)&ft_strdup);
@@ -87,12 +91,13 @@ int		main(int ac, char **av, char **envp)
 	ast->right->right = btree_node_new(COMMAND, alloc_rev);
 
 	pc_r = process_container(ast);
-	printf("EXIT CODE [%d] %s\n", pc_r, strerror(pc_r));
+	printf("EXIT CODE [%d] %s\n\n", pc_r, strerror(pc_r));
 
 	btree_delete(ast);
 	//=== TEST3 ===
 
 	//=== TEST4 === ls -la | grep '.h' | rev >> __1.testfile
+	printf("ls -la | grep '.h' | rev >> __1.testfile\n");
 
 	alloc_ls = (char**)ft_tabdup((const void**)cls, (void*)&ft_strdup);
 	alloc_grep = (char**)ft_tabdup((const void**)cgrep, (void*)&ft_strdup);
@@ -109,12 +114,14 @@ int		main(int ac, char **av, char **envp)
 	ast->right->right->right = btree_node_new(COMMAND, alloc_rev);
 
 	pc_r = process_container(ast);
-	printf("EXIT CODE [%d] %s\n", pc_r, strerror(pc_r));
+	system("cat __1.testfile");
+	printf("EXIT CODE [%d] %s\n\n", pc_r, strerror(pc_r));
 
 	btree_delete(ast);
 	//=== TEST4 ===
 
 	//=== TEST5 === ls -la | grep '.h' >> __1.testfile | rev 
+	printf("ls -la | grep '.h' >> __1.testfile | rev\n");
 
 	alloc_ls = (char**)ft_tabdup((const void**)cls, (void*)&ft_strdup);
 	alloc_grep = (char**)ft_tabdup((const void**)cgrep, (void*)&ft_strdup);
@@ -139,11 +146,29 @@ int		main(int ac, char **av, char **envp)
 	*/
 
 	pc_r = process_container(ast);
-	printf("EXIT CODE [%d] %s\n", pc_r, strerror(pc_r));
+	system("cat __1.testfile");
+	printf("EXIT CODE [%d] %s\n\n", pc_r, strerror(pc_r));
 
 	btree_delete(ast);
 	//=== TEST5 ===
 
+	//=== TEST6 === env | grep 'USER' | rev
+	printf("env | grep 'USER' | rev\n");
+	char **alloc_env = (char**)ft_tabdup((const void**)cenv, (void*)&ft_strdup);
+	cgrep[1] = "USER"; alloc_grep = (char**)ft_tabdup((const void**)cgrep, (void*)&ft_strdup); cgrep[1] = ".h";
+	alloc_rev = (char**)ft_tabdup((const void**)crev, (void*)&ft_strdup);
+
+	ast = btree_node_new(PIPE, NULL);
+	ast->left = btree_node_new(COMMAND, alloc_env);
+	ast->right = btree_node_new(PIPE, NULL);
+	ast->right->left = btree_node_new(COMMAND, alloc_grep);
+	ast->right->right = btree_node_new(COMMAND, alloc_rev);
+
+	pc_r = process_container(ast);
+	printf("EXIT CODE [%d] %s\n", pc_r, strerror(pc_r));
+
+	btree_delete(ast);
+	//=== TEST6 === env | grep 'USER' | rev
 
 	ft_tabfree((void**)environment);	
 	return (0);
