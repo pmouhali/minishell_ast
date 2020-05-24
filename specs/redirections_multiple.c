@@ -41,10 +41,8 @@ int		main(int ac, char **av, char **envp) // redirection multiples
 	tf1 = (char**)ft_tabdup((const void**)tfile1, (void*)&ft_strdup);
 	tf2 = (char**)ft_tabdup((const void**)tfile2, (void*)&ft_strdup);
 
-	ast = btree_node_new(REDIR_OUT_1, NULL);
-	ast->left = btree_node_new(OPERATOR_ARG, tf1); // the file where the output is redirected
-	ast->right = btree_node_new(REDIR_OUT_1, NULL); // the command
-	ast->right->left = btree_node_new(OPERATOR_ARG, tf2); // the file where the output is redirected
+	ast = btree_node_new(REDIR_OUT_1, tf1);
+	ast->right = btree_node_new(REDIR_OUT_1, tf2); // the command
 	ast->right->right = btree_node_new(COMMAND, args); // the command
 
 	pc_r = process_container(ast);
@@ -62,10 +60,8 @@ int		main(int ac, char **av, char **envp) // redirection multiples
 	tf1 = (char**)ft_tabdup((const void**)tfile1, (void*)&ft_strdup);
 	tf2 = (char**)ft_tabdup((const void**)tfile2, (void*)&ft_strdup);
 
-	ast = btree_node_new(REDIR_OUT_2, NULL);
-	ast->left = btree_node_new(OPERATOR_ARG, tf2); // the file where the output is redirected
-	ast->right = btree_node_new(REDIR_OUT_2, NULL); // the command
-	ast->right->left = btree_node_new(OPERATOR_ARG, tf1); // the file where the output is redirected
+	ast = btree_node_new(REDIR_OUT_2, tf2);
+	ast->right = btree_node_new(REDIR_OUT_2, tf1); // the command
 	ast->right->right = btree_node_new(COMMAND, args); // the command
 
 	pc_r = process_container(ast);
@@ -84,12 +80,9 @@ int		main(int ac, char **av, char **envp) // redirection multiples
 	tf2 = (char**)ft_tabdup((const void**)tfile2, (void*)&ft_strdup);
 	tf3 = (char**)ft_tabdup((const void**)tfile3, (void*)&ft_strdup);
 
-	ast = btree_node_new(REDIR_OUT_2, NULL);
-	ast->left = btree_node_new(OPERATOR_ARG, tf1);
-	ast->right = btree_node_new(REDIR_OUT_2, NULL);
-	ast->right->left = btree_node_new(OPERATOR_ARG, tf2);
-	ast->right->right = btree_node_new(REDIR_OUT_1, NULL);
-	ast->right->right->left = btree_node_new(OPERATOR_ARG, tf3);
+	ast = btree_node_new(REDIR_OUT_2, tf1);
+	ast->right = btree_node_new(REDIR_OUT_2, tf2);
+	ast->right->right = btree_node_new(REDIR_OUT_1, tf3);
 	ast->right->right->right = btree_node_new(COMMAND, args);
 
 	pc_r = process_container(ast);
@@ -110,12 +103,9 @@ int		main(int ac, char **av, char **envp) // redirection multiples
 	tf2 = (char**)ft_tabdup((const void**)tfile3, (void*)&ft_strdup);
 	tf3 = (char**)ft_tabdup((const void**)tfile2, (void*)&ft_strdup);
 
-	ast = btree_node_new(REDIR_IN_1, NULL);
-	ast->left = btree_node_new(OPERATOR_ARG, tf1);
-	ast->right = btree_node_new(REDIR_IN_1, NULL);
-	ast->right->left = btree_node_new(OPERATOR_ARG, tf2);
-	ast->right->right = btree_node_new(REDIR_IN_1, NULL);
-	ast->right->right->left = btree_node_new(OPERATOR_ARG, tf3);
+	ast = btree_node_new(REDIR_IN_1, tf1);
+	ast->right = btree_node_new(REDIR_IN_1, tf2);
+	ast->right->right = btree_node_new(REDIR_IN_1, tf3);
 	ast->right->right->right = btree_node_new(COMMAND, args);
 
 	pc_r = process_container(ast);
@@ -133,12 +123,9 @@ int		main(int ac, char **av, char **envp) // redirection multiples
 	tfile3[0] = "__3.testfile";
 	tf3 = (char**)ft_tabdup((const void**)tfile2, (void*)&ft_strdup);
 
-	ast = btree_node_new(REDIR_IN_1, NULL);
-	ast->left = btree_node_new(OPERATOR_ARG, tf1);
-	ast->right = btree_node_new(REDIR_IN_1, NULL);
-	ast->right->left = btree_node_new(OPERATOR_ARG, tf2);
-	ast->right->right = btree_node_new(REDIR_IN_1, NULL);
-	ast->right->right->left = btree_node_new(OPERATOR_ARG, tf3);
+	ast = btree_node_new(REDIR_IN_1, tf1);
+	ast->right = btree_node_new(REDIR_IN_1, tf2);
+	ast->right->right = btree_node_new(REDIR_IN_1, tf3);
 	ast->right->right->right = btree_node_new(COMMAND, args);
 
 	pc_r = process_container(ast);
@@ -155,12 +142,9 @@ int		main(int ac, char **av, char **envp) // redirection multiples
 	tf2 = (char**)ft_tabdup((const void**)tfile2, (void*)&ft_strdup);
 	tf3 = (char**)ft_tabdup((const void**)tfile3, (void*)&ft_strdup);
 
-	ast = btree_node_new(REDIR_IN_1, NULL);
-	ast->left = btree_node_new(OPERATOR_ARG, tf1);
-	ast->right = btree_node_new(REDIR_IN_1, NULL);
-	ast->right->left = btree_node_new(OPERATOR_ARG, tf2);
-	ast->right->right = btree_node_new(REDIR_OUT_1, NULL);
-	ast->right->right->left = btree_node_new(OPERATOR_ARG, tf3);
+	ast = btree_node_new(REDIR_IN_1, tf1);
+	ast->right = btree_node_new(REDIR_IN_1, tf2);
+	ast->right->right = btree_node_new(REDIR_OUT_1, tf3);
 	ast->right->right->right = btree_node_new(COMMAND, args);
 
 	pc_r = process_container(ast);

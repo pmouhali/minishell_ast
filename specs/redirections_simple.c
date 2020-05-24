@@ -32,8 +32,7 @@ int		main(int ac, char **av, char **envp) // redirections simple
 	printf("TEST1 : echo 0123456789abcdef 01 > __1.testfile\n");
 	args = (char**)ft_tabdup((const void**)cecho, (void*)&ft_strdup); 			// Créer le tableau d'arguments (obligé de l'allouer parce que btree_delete est appelé à la fin)
 	alloc_testfile = (char**)ft_tabdup((const void**)testfile, (void*)&ft_strdup);		// Pareil que pour les arguments mais pour le node de type OPERATOR_ARG
-	ast = btree_node_new(REDIR_OUT_1, NULL);									// Créer le node de type operator : redirection
-	ast->left = btree_node_new(OPERATOR_ARG, alloc_testfile);							// Créer le node de type operator_arg, il contient le fichier à ouvrir en argument
+	ast = btree_node_new(REDIR_OUT_1, alloc_testfile);									// Créer le node de type operator : redirection
 	ast->right = btree_node_new(COMMAND, args);									// Créer le node de type command : il contient le tableau d'arguments représentant la commande
 
 	pc_r = process_container(ast);
@@ -48,8 +47,7 @@ int		main(int ac, char **av, char **envp) // redirections simple
 	args = (char**)ft_tabdup((const void**)cls, (void*)&ft_strdup);
 	testfile[0] = "__2.testfile";
 	alloc_testfile = (char**)ft_tabdup((const void**)testfile, (void*)&ft_strdup);
-	ast = btree_node_new(REDIR_OUT_2, NULL);
-	ast->left = btree_node_new(OPERATOR_ARG, alloc_testfile);
+	ast = btree_node_new(REDIR_OUT_2, alloc_testfile);
 	ast->right = btree_node_new(COMMAND, args);
 
 	pc_r = process_container(ast);
@@ -64,8 +62,7 @@ int		main(int ac, char **av, char **envp) // redirections simple
 	args = (char**)ft_tabdup((const void**)cgrep, (void*)&ft_strdup);
 	testfile[0] = "__2.testfile";
 	alloc_testfile = (char**)ft_tabdup((const void**)testfile, (void*)&ft_strdup);
-	ast = btree_node_new(REDIR_IN_1, NULL);
-	ast->left = btree_node_new(OPERATOR_ARG, alloc_testfile);
+	ast = btree_node_new(REDIR_IN_1, alloc_testfile);
 	ast->right = btree_node_new(COMMAND, args);
 
 	pc_r = process_container(ast);
@@ -80,8 +77,7 @@ int		main(int ac, char **av, char **envp) // redirections simple
 	args = (char**)ft_tabdup((const void**)cgrep, (void*)&ft_strdup);
 	testfile[0] = "file_that_does_not_exists";
 	alloc_testfile = (char**)ft_tabdup((const void**)testfile, (void*)&ft_strdup);
-	ast = btree_node_new(REDIR_IN_1, NULL);
-	ast->left = btree_node_new(OPERATOR_ARG, alloc_testfile);
+	ast = btree_node_new(REDIR_IN_1, alloc_testfile);
 	ast->right = btree_node_new(COMMAND, args);
 
 	pc_r = process_container(ast);

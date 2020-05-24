@@ -109,8 +109,7 @@ int		main(int ac, char **av, char **envp)
 	ast->left = btree_node_new(COMMAND, alloc_ls);
 	ast->right = btree_node_new(PIPE, NULL);
 	ast->right->left = btree_node_new(COMMAND, alloc_grep);
-	ast->right->right = btree_node_new(REDIR_OUT_2, NULL);
-	ast->right->right->left = btree_node_new(OPERATOR_ARG, alloc_testfile);
+	ast->right->right = btree_node_new(REDIR_OUT_2, alloc_testfile);
 	ast->right->right->right = btree_node_new(COMMAND, alloc_rev);
 
 	pc_r = process_container(ast);
@@ -131,8 +130,7 @@ int		main(int ac, char **av, char **envp)
 	ast = btree_node_new(PIPE, NULL);
 	ast->left = btree_node_new(COMMAND, alloc_ls);
 	ast->right = btree_node_new(PIPE, NULL);
-	ast->right->left = btree_node_new(REDIR_OUT_2, NULL);
-	ast->right->left->left = btree_node_new(OPERATOR_ARG, alloc_testfile);
+	ast->right->left = btree_node_new(REDIR_OUT_2, alloc_testfile);
 	ast->right->left->right = btree_node_new(COMMAND, alloc_grep);
 	ast->right->right = btree_node_new(COMMAND, alloc_rev);
 	/*
@@ -141,8 +139,8 @@ int		main(int ac, char **av, char **envp)
 				     COMMAND ls		PIPE
 					               /    \
 						REDIR_OUT_2		 COMMAND rev
-					   /           \
-	   OPERATOR_ARG testfile	   COMMAND grep
+					               \
+	   	   						COMMAND grep
 	*/
 
 	pc_r = process_container(ast);

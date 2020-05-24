@@ -32,7 +32,6 @@ enum	e_node_type
 	PIPE,
 	AND,
 	OR,
-	OPERATOR_ARG
 };
 
 typedef struct	s_node

@@ -8,11 +8,11 @@ int		redirect_in(t_node *n, t_options *options)
 	int	tmp;
 	int ret;
 
-	if (n->left->type != OPERATOR_ARG || n->type != REDIR_IN_1)
+	if (n->type != REDIR_IN_1)
 		return (-1);
-	if ((file_fd = open(n->left->args[0], O_RDONLY)) == -1)
+	if ((file_fd = open(n->args[0], O_RDONLY)) == -1)
 	{
-		ft_perrorc("minishell", n->left->args[0], strerror(errno));
+		ft_perrorc("minishell", n->args[0], strerror(errno));
 		return (-1);
 	}
 	tmp = options->previous_pread;
@@ -26,6 +26,6 @@ int		redirect_in(t_node *n, t_options *options)
 /*
 **	Reçoit un node de type REDIR_IN_1
 **
-**	Le node de gauche est considéré comme l'argument, donc le fichier à ouvrir.
+**	Le fichier à ouvrir se trouve dans node->args[0]
 **	Celui de droite sera évalué.
 */
