@@ -42,13 +42,22 @@ Pour chaque opérateur ET, la commande de droite n'est executée que si la comma
 
 Pour chaque opérateur OU, la commande de droite n'est executée que si la commande de gauche retourne 1 (false).
 
-SCHEMA
+![repr_or_commands](https://github.com/pmouhali/minishell/blob/tuto/exec_part/or_op_schema.png)
 
 **Opérateur ET et OU dans la même commande**
 
 Ces deux opérateur ont la plus haute priorité de la liste, et ils sont égaux. La règle à suivre pour construire la commande est celle de la "left-associativity" : https://unix.stackexchange.com/questions/88850/precedence-of-the-shell-logical-operators on regroupe les mêmes opérateurs en partant de la gauche.
 
-SCHEMAS
+Sur le schema, on peut voir trois étapes.
+
+Etape 1 : séparer la commande en 2 avec le dernier opérateur de haute priorité trouvé.
+
+Etape 2 : séparer la partie gauche en 3 en fonction des deux derniers opérateur de haute priorité similaires.
+
+Etape 3 : séparer la partie la plus à gauche en 3 en fonction des deux derniers opérateur de haute priorité similaires.
+
+
+![repr_multi_command](https://github.com/pmouhali/minishell/blob/tuto/exec_part/multi_and_or_schema.png)
 
 ## AST : Construire l'AST à partir de la string reçue en input
 
