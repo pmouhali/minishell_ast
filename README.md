@@ -34,13 +34,13 @@ Liste des opérateurs pris en charge : &&, ||, |, <, >, >>.
 
 **Opérateur ET**
 
-Pour chaque opérateur ET, la commande de droite n'est executée que si la commande de gauche à retourner 0 (true).
+Pour chaque opérateur ET, la commande de droite n'est executée que si la commande de gauche retourne 0 (true).
 
-SCHEMA
+![repr_and_commands](https://github.com/pmouhali/minishell/blob/tuto/exec_part/and_op_schema.png)
 
 **Opérateur OU**
 
-Pour chaque opérateur OU, la commande de droite n'est executée que si la commande de gauche à retourner 1 (false).
+Pour chaque opérateur OU, la commande de droite n'est executée que si la commande de gauche retourne 1 (false).
 
 SCHEMA
 
