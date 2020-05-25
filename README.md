@@ -59,6 +59,16 @@ Etape 3 : séparer la partie la plus à gauche en 3 en fonction des deux dernier
 
 ![repr_multi_command](https://github.com/pmouhali/minishell/blob/tuto/exec_part/multi_and_or_schema.png)
 
+**Pipes et Redirections**
+
+L'opérateur ayant la plus haute priorité après ET et OU est le PIPE.
+
+Les REDIRECTIONS viennent après le PIPE. Les trois différentes redirections peuvent ne pas respecter d'ordre de priorité entres elles, on peut décider qu'elles soient égales ou différentes, peu importe. Elles peuvent être executées dans n'importe quel ordre.
+
+![repr_pipe_redirection_1](https://github.com/pmouhali/minishell/blob/tuto/exec_part/two_pipes_one_redirection.png)
+
+![repr_pipe_redirection_2](https://github.com/pmouhali/minishell/blob/tuto/exec_part/pipe_three_redirections.png)
+
 ## AST : Construire l'AST à partir de la string reçue en input
 
 In progress
