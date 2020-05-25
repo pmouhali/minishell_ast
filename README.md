@@ -67,7 +67,34 @@ Les REDIRECTIONS viennent après le PIPE. Les trois différentes redirections pe
 
 ![repr_pipe_redirection_1](https://github.com/pmouhali/minishell/blob/tuto/exec_part/two_pipes_one_redirection.png)
 
+Le premier node évalué est le plus haut. Il est de type PIPE.
+
+La fonction associée au type PIPE effectue les actions suivantes :
+- créer un pipe
+- stocker les file descriptors dans struct s_options
+- evaluer le node de gauche
+- swapper les file descriptors dans struct s_options
+- fermer un éventuel pipe crée précédemment qui n'est plus utile et empêche un pipeline de fonctionner
+- evaluer le node de droite
+- fermer le pipe crée
+- retourner le resultat de l'evaluation du node de droite
+
+Lorsque le node de gauche est évalué, la fonction associé au type REDIR_OUT_2 (redirection output 2) est appelée. Elle ouvre le fichier passé en argument, et stock le file descriptor correspondant dans struct s_options (remplaçant donc le file descriptor du pipe, ce qui est nécéssaire pour que ce soit celui du fichier qui soit dup2, elle restore le file descriptor du pipe a la fin de son execution). Elle évalue ensuite le node de droite, c'est la commande **ls**.
+
+Puis le node de droite est évalué, c'est encore un node de type PIPE. Même actions que pour le premier pipe. A noter qu'à cet instant précis deux pipes cohabitent dans struct s_options. C'est nécéssaire pour que le processus du milieu puisse lire sur le pipe crée lors de l'evaluation du tout premier node, et écrire sur le pipe crée à cet appel-ci.
+Les nodes gauche et droit sont évalués successivement.
+
+**ls** est bien lancé en premier, son output est redirigé dans **file1**, rev est ensuite executé, il n'as rien à lire puisque **ls** n'as pas écrit dans le pipe, puis **cut** est lancé, il n'as rien à lire non plus, donc n'écrira rien. Le résultat est bon. Cette commande est super débile mais c'est un bon exemple.
+
 ![repr_pipe_redirection_2](https://github.com/pmouhali/minishell/blob/tuto/exec_part/pipe_three_redirections.png)
+
+Une fois que le node de gauche à été évaluer, les trois nodes de redirections vont être evalué successivement puis le processus sera lancé. Il va se passer précisemment ça :
+- **file1** est ouvert, son file descriptor est stocké au bon endroit dans s_struct options : le processus lira depuis **file1**
+- **file3** est ouvert, son file descriptor est stocké au bon endroit dans s_struct options : le processus écrira dans **file3**
+- **file2** est ouvert, son file descriptor est stocké au bon endroit dans s_struct options : le processus lira depuis **file2**
+
+Le processus est lancé, il lis depuis file2 et écris dans file3, c'est le bon résultat.
+On voit bien que l'ordre n'importe pas entre redirections différentes. Donc on peut construire l'ast en suivant l'ordre d'apparition des redirections dans l'input.
 
 ## AST : Construire l'AST à partir de la string reçue en input
 
