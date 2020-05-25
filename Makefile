@@ -14,7 +14,7 @@ MINISHFCT = env_tool.c ft_perrorc.c btree_delete.c btree_node_new.c \
 			process_container.c eval_node.c run_process.c \
 			try_path.c build_path.c process_tools.c fd_tools.c \
 			redirect_out_trunc.c redirect_out_append.c redirect_in.c \
-			pipe_processes.c
+			pipe_processes.c and_operator.c or_operator.c
 
 
 ALL_SRCS = $(MINISHFCT) $(addprefix builtins/,$(BUILTINS))

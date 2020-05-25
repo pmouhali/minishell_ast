@@ -22,6 +22,7 @@ int		process_container(t_node *root)
 	int status;
 	int launch_status;
 
+	status = 0;
 	launch_status = eval_node(root, NULL);
 	pid = 1;
 	while (pid > 0)

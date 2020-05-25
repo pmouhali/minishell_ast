@@ -65,6 +65,8 @@ int     redirect_out_trunc(t_node *n, t_options *options);
 int     redirect_out_append(t_node *n, t_options *options);
 int     redirect_in(t_node *n, t_options *options);
 int     pipe_processes(t_node *n, t_options *options);
+int     and_operator(t_node *n, t_options *opt);
+int     or_operator(t_node *n, t_options *opt);
 
 // PROCESS UTILS
 int     isbuiltin(char *bname);
