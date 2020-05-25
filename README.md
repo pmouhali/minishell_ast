@@ -96,6 +96,14 @@ Une fois que le node de gauche à été évaluer, les trois nodes de redirection
 Le processus est lancé, il lis depuis file2 et écris dans file3, c'est le bon résultat.
 On voit bien que l'ordre n'importe pas entre redirections différentes. Donc on peut construire l'ast en suivant l'ordre d'apparition des redirections dans l'input.
 
+**Qu'est ce qui se passe si une commande fail ?**
+
+Le code d'erreur est retourné (command_not_found, no_such_file_or_directory, etc), l'evaluation des nodes de l'arbre continue. Par exemple :
+
+	$> cat file1 | grep -pas_une_vraie_option 'du contenu' | rev
+	
+Même si le processus du milieu fail, le pipeline doit être executé normalement.
+
 ## AST : Construire l'AST à partir de la string reçue en input
 
 In progress
