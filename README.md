@@ -3,14 +3,7 @@
 
 ## AST : Intro
 
-Qu'est ce qu'un Abstract Syntax Tree, comment ça fonctionne : https://ruslanspivak.com/lsbasi-part7/
-
-L'intêret qu'on a trouver à utiliser un ast pour un intépreteur de commande genre Bash, c'est de simplifier la logique au niveau de l'évaluation des commandes, simplifier le code, utiliser une méthode récursive.
-
-On stock que le minimum d'informations :
-- Un type pour identifier le type de noeud sur l'arbre
-- La commande et ses arguments sous forme de tableau de strings
-- Maximum 4 file descriptors pour gérer redirections et pipe
+ https://ruslanspivak.com/lsbasi-part7/
 
 La structure de noeud est la suivante :
 
